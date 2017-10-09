@@ -1,0 +1,15 @@
+body {
+    background: url('../img/bg.jpg');
+}
+.login .vertical-offset {
+    padding-top: 160px;
+}
+.login .vertical-offset2 {
+    padding-top: 100px;
+}
+.login .panel {
+    padding:10px 0px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border: 1px solid white;
+    border-radius: 25px;
+}
