@@ -2491,11 +2491,7 @@
                 "constructor",
                 "instantiate"
             ],
-<<<<<<< HEAD
-            "time": "2015-06-14 21:17:01"
-=======
             "time": "2015-06-14T21:17:01+00:00"
->>>>>>> b316d0520bde0eea41e03094472ff2673a4a03fb
         },
         {
             "name": "fzaninotto/faker",
