@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'mail.itology.org'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', 25),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'wirelessinfrastructuredata@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'test@itology.org'),
         'name' => env('MAIL_FROM_NAME', 'wirelessinfrastructuredata'),
     ],
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'wirelessinfrastructuredata@gmail.com',
+    'username' => 'test@itology.org',
 
-    'password' => 'ab1379CD%',
+    'password' => '12345678',
 
     /*
     |--------------------------------------------------------------------------
