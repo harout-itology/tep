@@ -71,10 +71,7 @@ class LoginController extends Controller
 
             $user = User::where('email',$guser['email'])->first();
 
-            if(isset($user->email)){
-                Auth::login($user);
-            }
-            else{
+            if(!isset($user->email)){
                 $user = new User();
                 $user->email = $guser['email'];
                 $user->name = $guser['name'];
@@ -82,6 +79,7 @@ class LoginController extends Controller
                 $user->password =  $password;
                 $user->save();
             }
+			Auth::login($user);
             return redirect('/');
         }
     }
