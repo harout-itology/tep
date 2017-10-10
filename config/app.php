@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://wirelessinfrastructuredata.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -103,7 +103,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => 'base64:pKQE6JPHfFT0vByGFsTWzzyEFxVbIZtqtO6AQSTPCwI=',
 
     'cipher' => 'AES-256-CBC',
 
