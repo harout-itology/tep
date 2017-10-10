@@ -105,6 +105,7 @@ return [
 
     'key' => 'base64:pKQE6JPHfFT0vByGFsTWzzyEFxVbIZtqtO6AQSTPCwI=',
 
+
     'cipher' => 'AES-256-CBC',
 
     /*
