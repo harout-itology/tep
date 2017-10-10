@@ -46,11 +46,8 @@ return [
             'database' => env('DB_DATABASE', 'tep'),
             'username' => env('DB_USERNAME', 'hko'),
             'password' => env('DB_PASSWORD', 'hko1234'),
-<<<<<<< HEAD
-            'unix_socket' => '/var/run/mysqld/mysqld.sock',
-=======
+            //'unix_socket' => '/var/run/mysqld/mysqld.sock',
             'unix_socket' => env('DB_SOCKET', ''),
->>>>>>> b316d0520bde0eea41e03094472ff2673a4a03fb
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
