@@ -12,13 +12,14 @@
                     <div class="panel-body">
                         <div class="col-md-6 text-center">
                             <div class="row">
-                                <div class="col-md-12"><img src="{{url('/public/img/logo.png')}}"  width="110"/><br></div>
-                                <div class="col-md-12"><a href="{{ route('password.request') }}" class="btn btn-link"> Reset Password </a></div>
-                                <div class="col-md-12"><a href="{{ route('register') }}" class="btn btn-link"> Apply For a New Account </a></div>
-                                <div class="col-md-12">
-                                    <a  href="" class="btn btn-danger">
-                                        <i class="fa fa-google-plus"></i> Sign in with Google
-                                    </a>
+                                <div class="col-md-12"><img src="{{url('/public/img/logo.png')}}"  width="100"/><br><br></div>
+                                <div class="col-md-6"><a href="{{ route('password.request') }}" class="btn btn-link"> Reset Password </a><br><br></div>
+                                <div class="col-md-6"><a href="{{ route('register') }}" class="btn btn-link">   New Account </a><br><br></div>
+                                <div class="col-md-6">
+                                    <a  href="{{$google}}" class="btn btn-primary"> <i class="fa fa-google-plus"></i> &nbsp; Sign in  </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <a  href="" class="btn btn-primary"> <i class="fa fa-linkedin"></i> &nbsp; Sign in </a>
                                 </div>
                                 <br>
                             </div>
