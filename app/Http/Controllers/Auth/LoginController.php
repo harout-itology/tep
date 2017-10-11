@@ -106,7 +106,7 @@ class LoginController extends Controller
             Auth::login($user);
             return redirect('/');
         }elseif (LinkedIn::hasError()) {
-            return redirect('/login');
+            return redirect('/linkedin-oauth2callback');
         }
 
     }
