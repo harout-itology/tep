@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $response = \GoogleMaps::load('geocoding')
+            ->setParam (['address' =>'MegaProgramming, Beknazarian Street, Yerevan, Armenia'])
+            ->get();
+
+        return view('home',['response'=>$response]);
     }
 }
