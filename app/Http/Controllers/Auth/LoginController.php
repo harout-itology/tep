@@ -7,7 +7,6 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
-use LinkedIn;
 use Config;
 
 class LoginController extends Controller
@@ -51,11 +50,12 @@ class LoginController extends Controller
     {
         $authUrl = parent::googleconfig();
         $google = $authUrl->createAuthUrl();
+        
+        //$linkedin = str_replace('login',Config::get('linkedin.callback'),$linkedin);
 
-        $linkedin  =  LinkedIn::getLoginUrl();
-        $linkedin = str_replace('login',Config::get('linkedin.callback'),$linkedin);
+        $linkedin = new \Happyr\LinkedIn\LinkedIn(Config::get('linkedin.api_key'), Config::get('linkedin.api_secret'));
 
-        return view('auth.login',['google'=>$google,'linkedin'=>$linkedin]);
+        return view('auth.login',['google'=>$google,'linkedin'=>$linkedin->getLoginUrl()]);
     }
 
     public function google(Request $request)
@@ -90,24 +90,26 @@ class LoginController extends Controller
         }
     }
 
-    public function linkedin(){
+    public function linkedin()
+    {
+        $linkedin = new \Happyr\LinkedIn\LinkedIn(Config::get('linkedin.api_key'), Config::get('linkedin.api_secret'));
 
-        if (LinkedIn::isAuthenticated()) {
+        if ($linkedin->isAuthenticated()) {
             //we know that the user is authenticated now. Start query the API
-            $guser=LinkedIn::get('v1/people/~:(firstName,lastName,emailAddress)');
+            $guser=$linkedin->get('v1/people/~:(firstName,lastName,emailAddress)');
             
             $user = User::where('email',$guser['emailAddress'])->first();
             if(!isset($user->email)){
                 $user = new User();
                 $user->email = $guser['emailAddress'];
-                $user->name = $guser['name'].' '.$guser['name'];
+                $user->name = $guser['firstName'].' '.$guser['lastName'];
                 $password = str_random(8);
                 $user->password =  $password;
                 $user->save();
             }
             Auth::login($user);
             return redirect('/');
-        }elseif (LinkedIn::hasError()) {
+        }elseif ($linkedin->hasError()) {
             return redirect('/login');
         }
 
