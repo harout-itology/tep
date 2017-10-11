@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use LinkedIn;
 
 class LoginController extends Controller
 {
@@ -50,7 +51,9 @@ class LoginController extends Controller
         $authUrl = parent::googleconfig();
         $google = $authUrl->createAuthUrl();
 
-        return view('auth.login',['google'=>$google]);
+        $linkedin = LinkedIn::getLoginUrl();
+
+        return view('auth.login',['google'=>$google,'linkedin'=>$linkedin]);
     }
 
     public function google(Request $request)
@@ -83,6 +86,29 @@ class LoginController extends Controller
 			Auth::login($user);
             return redirect('/');
         }
+    }
+
+    public function linkedin(){
+
+        if (LinkedIn::isAuthenticated()) {
+            //we know that the user is authenticated now. Start query the API
+            $guser=LinkedIn::get('v1/people/~:(firstName,lastName,emailAddress)');
+            
+            $user = User::where('email',$guser['emailAddress'])->first();
+            if(!isset($user->email)){
+                $user = new User();
+                $user->email = $guser['emailAddress'];
+                $user->name = $guser['name'].' '.$guser['name'];
+                $password = str_random(8);
+                $user->password =  $password;
+                $user->save();
+            }
+            Auth::login($user);
+            return redirect('/');
+        }elseif (LinkedIn::hasError()) {
+            return redirect('/login');
+        }
+
     }
 
 
