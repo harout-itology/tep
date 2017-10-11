@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'mail.itology.org'),
+    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 25),
+    'port' => env('MAIL_PORT', 2525),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'test@itology.org'),
+        'address' => env('MAIL_FROM_ADDRESS', 'wirelessinfrastructuredata@mail.com'),
         'name' => env('MAIL_FROM_NAME', 'wirelessinfrastructuredata'),
     ],
 
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'test@itology.org',
+    'username' => 'c65c100cde62ee',
 
-    'password' => '12345678',
+    'password' => '27eb732da1bccb',
 
     /*
     |--------------------------------------------------------------------------
