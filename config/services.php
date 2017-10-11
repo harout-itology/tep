@@ -16,7 +16,7 @@ return [
     'linkedin' => [
         'client_id' => '784wvtzqs0kac9',
         'client_secret' => 'T0vi7LsYW0TjuIpx',
-        'redirect' => url('/linkedin-oauth2callback'),
+        'redirect' => 'http://wirelessinfrastructuredata.com/linkedin-oauth2callback',
     ],
 
     'mailgun' => [
