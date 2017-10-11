@@ -20,4 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/google-oauth2callback', 'Auth\LoginController@google');
+
+Route::get('/linkedin-url', 'Auth\LoginController@linkedin_URL');
 Route::get('/linkedin-oauth2callback', 'Auth\LoginController@linkedin');

@@ -13,6 +13,11 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
+    'linkedin' => [
+        'client_id' => '784wvtzqs0kac9',
+        'client_secret' => 'T0vi7LsYW0TjuIpx',
+        'redirect' => url('/linkedin-oauth2callback'),
+    ],
 
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),

@@ -177,7 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         //Linkedin API integration for Laravel Framework
-        Artesaos\LinkedIn\LinkedinServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],
 
@@ -227,7 +227,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'LinkedIn'  => \Artesaos\LinkedIn\Facades\LinkedIn::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
