@@ -14,7 +14,7 @@ return [
     |
     */
     
-    'key'       => 'AIzaSyAFW6ifz4HBeEU1-ZDHUgSd8eC_Krq8eB4',
+    'key'       => 'AIzaSyCWpzWDcrfSti1hVmKt-oXKU8zk_uc51JQ',
         
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
         'geocoding' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/geocode/',
                         'type'                  => 'GET',
-                        'key'                   =>  'AIzaSyAFW6ifz4HBeEU1-ZDHUgSd8eC_Krq8eB4',
+                        'key'                   =>  '',
                         'endpoint'              =>  true,
                         'responseDefaultKey'    => 'place_id',
                         'param'                 => [

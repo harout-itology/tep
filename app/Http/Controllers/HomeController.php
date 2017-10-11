@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Config;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $response = \GoogleMaps::load('geocoding')
-            ->setParam (['address' =>'MegaProgramming, Beknazarian Street, Yerevan, Armenia'])
-            ->get();
 
-        return view('home',['response'=>$response]);
+        return view('home');
     }
 }
