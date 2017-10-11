@@ -10,4 +10,6 @@
 return [
     'api_key' => '784wvtzqs0kac9',
     'api_secret' => 'T0vi7LsYW0TjuIpx',
+    'callback' => 'linkedin-oauth2callback',
+    
 ];
