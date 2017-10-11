@@ -45,7 +45,7 @@ return [
         'geocoding' => [
                         'url'                   => 'https://maps.googleapis.com/maps/api/geocode/',
                         'type'                  => 'GET',
-                        'key'                   =>  null,
+                        'key'                   =>  'AIzaSyAFW6ifz4HBeEU1-ZDHUgSd8eC_Krq8eB4',
                         'endpoint'              =>  true,
                         'responseDefaultKey'    => 'place_id',
                         'param'                 => [
