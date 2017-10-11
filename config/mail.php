@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 2525),
+    'port' => env('MAIL_PORT', 25),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'wirelessinfrastructuredata@mail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'wirelessinfrastructuredata@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'wirelessinfrastructuredata'),
     ],
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', ''),
+    'encryption' => env('MAIL_ENCRYPTION', false),
 
     /*
     |--------------------------------------------------------------------------
