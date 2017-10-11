@@ -51,8 +51,7 @@ class LoginController extends Controller
         $authUrl = parent::googleconfig();
         $google = $authUrl->createAuthUrl();
 
-        $linkedin = LinkedIn::getLoginUrl();
-        $linkedin = str_replace('login','linkedin-oauth2callback',$linkedin);
+        $linkedin  = 'http://wirelessinfrastructuredata.com/linkedin-oauth2callback'; // LinkedIn::getLoginUrl();
 
         return view('auth.login',['google'=>$google,'linkedin'=>$linkedin]);
     }
