@@ -52,6 +52,7 @@ class LoginController extends Controller
         $google = $authUrl->createAuthUrl();
 
         $linkedin = LinkedIn::getLoginUrl();
+        $linkedin = str_replace('login','linkedin-oauth2callback',$linkedin);
 
         return view('auth.login',['google'=>$google,'linkedin'=>$linkedin]);
     }
@@ -104,9 +105,9 @@ class LoginController extends Controller
                 $user->save();
             }
             Auth::login($user);
-            return redirect('/linkedin-oauth2callback');
+            return redirect('/');
         }elseif (LinkedIn::hasError()) {
-            return redirect('/linkedin-oauth2callback');
+            return redirect('/login');
         }
 
     }
