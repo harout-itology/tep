@@ -9,6 +9,10 @@
         .dataTables_length{
             margin:0 18%;
         }
+        #map {
+            height: 450px;
+            width: 100%;
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
@@ -57,72 +61,24 @@
                                     </tr>
                                     </tfoot>
                                     <tbody>
+                                    @foreach($towers as $item)
                                     <tr>
-                                        <td>Tiger Nixon1</td>
-                                        <td>System Architect1</td>
-                                        <td>Edinburgh1</td>
-                                        <td>611</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
+                                        <td>{{$item->towerid}}</td>
+                                        <td>{{$item->sitename}}</td>
+                                        <td>{{$item->address}}</td>
+                                        <td>{{$item->city}}</td>
+                                        <td>{{$item->country}}</td>
+                                        <td>{{$item->height}}</td>
+                                        <td>{{$item->infication}}</td>
+                                        <td>{{$item->towerowner}}</td>
                                     </tr>
-                                    <tr>
-                                        <td>Tiger Nixon2</td>
-                                        <td>System Architect2</td>
-                                        <td>Edinburgh2</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tiger Nixon3</td>
-                                        <td>System Architect3</td>
-                                        <td>Edinburgh3</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tiger Nixon4</td>
-                                        <td>System Architect4</td>
-                                        <td>Edinburgh4</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tiger Nixon2</td>
-                                        <td>System Architect2</td>
-                                        <td>Edinburgh2</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tiger Nixon1</td>
-                                        <td>System Architect1</td>
-                                        <td>Edinburgh1</td>
-                                        <td>611</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                        <td>$320,800</td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
 
                             </div>
                             <div id="menu2" class="tab-pane fade">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6593268.507391775!2d-100.3032860467984!3d36.20621560613941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54eab584e432360b%3A0x1c3bb99243deb742!2sUnited+States!5e0!3m2!1sen!2s!4v1507806659594" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                <div id="map"></div>
                             </div>
                         </div>
 
@@ -168,5 +124,32 @@
             $('.dt-button').addClass('btn btn-default').removeClass('dt-button');
         } );
     </script>
+
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 3,
+                center: new google.maps.LatLng(66.1265941, -113.9536265),
+                mapTypeId: 'terrain'
+            });
+            // Create a <script> tag and set the USGS URL as the source.
+            var script = document.createElement('script');
+            // This example uses a local copy of the GeoJSON stored at  // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+            script.src = 'https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js';
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }
+        // Loop through the results array and place a marker for each // set of coordinates.
+        window.eqfeed_callback = function(results) {
+           @foreach($towers as $item)
+                var latLng = new google.maps.LatLng({{$item->latitude}},{{$item->longitude}});
+                var marker = new google.maps.Marker({
+                    position: latLng,
+                    map: map
+                });
+           @endforeach
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFW6ifz4HBeEU1-ZDHUgSd8eC_Krq8eB4&callback=initMap"></script>
 
 @endsection
