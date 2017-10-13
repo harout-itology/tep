@@ -130,7 +130,6 @@
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 3,
-                center: new google.maps.LatLng(66.1265941, -113.9536265),
                 mapTypeId: 'terrain'
             });
             // Create a <script> tag and set the USGS URL as the source.
@@ -151,5 +150,12 @@
         }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFW6ifz4HBeEU1-ZDHUgSd8eC_Krq8eB4&callback=initMap"></script>
+
+    <script>
+        $('.nav-tabs').on('shown.bs.tab', function () {
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(new google.maps.LatLng(32.12164, -17.84661));
+        });
+    </script>
 
 @endsection
