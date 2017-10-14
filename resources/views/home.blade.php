@@ -129,7 +129,7 @@
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 3,
+                zoom: 5,
                 mapTypeId: 'terrain'
             });
             // Create a <script> tag and set the USGS URL as the source.
@@ -154,7 +154,7 @@
     <script>
         $('.nav-tabs').on('shown.bs.tab', function () {
             google.maps.event.trigger(map, 'resize');
-            map.setCenter(new google.maps.LatLng(32.12164, -17.84661));
+            map.setCenter(new google.maps.LatLng(37.0903563,-95.7829316));
         });
     </script>
 

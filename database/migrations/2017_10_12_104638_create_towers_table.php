@@ -31,7 +31,8 @@ class CreateTowersTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('phone');
-            $table->string('region');
+            $table->string('email');
+			$table->string('region');
             $table->string('towerowner');
             $table->string('towerownershort');
             $table->string('btanumber');
