@@ -1,15 +1,29 @@
 body {
     background: url('../img/bg.jpg');
 }
-.login .vertical-offset {
+
+@media only screen and (min-width: 768px) {
+    .login .vertical-offset {
     padding-top: 160px;
 }
-.login .vertical-offset2 {
-    padding-top: 100px;
+
+	.login .vertical-offset2 {
+		padding-top: 100px;
+	}
 }
+
 .login .panel {
     padding:10px 0px;
     background-color: rgba(255, 255, 255, 0.4);
     border: 1px solid white;
     border-radius: 25px;
 }
+
+ #map {
+            height: 450px;
+            width: 100%;
+}
+
+ .dataTables_length{
+            margin:0 18%;
+        }

@@ -5,14 +5,7 @@
     <style>
         body{
             background-image: none;
-        }
-        .dataTables_length{
-            margin:0 18%;
-        }
-        #map {
-            height: 450px;
-            width: 100%;
-        }
+        }       
     </style>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
@@ -33,7 +26,7 @@
                         </ul><br>
 
                         <div class="tab-content">
-                            <div id="menu1" class="tab-pane fade in active">
+                            <div id="menu1" class="tab-pane fade in active ">
 
                                 <table id="example" class="display nowrap" cellspacing="0" width="100%">
                                     <thead>
@@ -63,7 +56,7 @@
                                     <tbody>
                                     @foreach($towers as $item)
                                     <tr>
-                                        <td>{{$item->towerid}}</td>
+                                        <td><a href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
                                         <td>{{$item->sitename}}</td>
                                         <td>{{$item->address}}</td>
                                         <td>{{$item->city}}</td>
@@ -122,6 +115,7 @@
                 }
             } );
             $('.dt-button').addClass('btn btn-default').removeClass('dt-button');
+			
         } );
     </script>
 
@@ -156,6 +150,7 @@
             google.maps.event.trigger(map, 'resize');
             map.setCenter(new google.maps.LatLng(37.0903563,-95.7829316));
         });
+		$('.home').addClass('active');
     </script>
 
 @endsection

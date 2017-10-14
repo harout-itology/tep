@@ -103,4 +103,7 @@
 @endsection
 
 @section('foot')
+	<script>
+		$('.profile').addClass('active');
+	</script>
 @endsection

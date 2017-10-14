@@ -26,3 +26,5 @@ Route::get('/linkedin-oauth2callback', 'Auth\LoginController@linkedin');
 
 Route::get('/user-update', 'UserController@update');
 Route::put('/user-update', 'UserController@store');
+
+Route::resource('/tower','TowerController');

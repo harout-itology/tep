@@ -86,6 +86,7 @@ class LoginController extends Controller
 			Auth::login($user);
             return redirect('/');
         }
+		return abort(404);
     }
 
     public function linkedin_URL()
@@ -98,7 +99,6 @@ class LoginController extends Controller
     {
         try {
             $guser = Socialite::driver('linkedin')->user();
-
             $user = User::where('email',$guser->email)->first();
             if(!isset($user->email)){
                 $user = new User();
@@ -112,7 +112,7 @@ class LoginController extends Controller
             return redirect('/');
 
         } catch (Exception $e) {
-            return redirect('/');
+            return abort(404);
         }
 
     }
