@@ -15,7 +15,7 @@ class CreateTowersTable extends Migration
     {
         Schema::create('towers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('towerid')->unique();
+            $table->string('towerid');
             $table->string('sitename');
             $table->string('address');
             $table->string('city');
