@@ -19,10 +19,6 @@ body {
     border-radius: 25px;
 }
 
- #map {
-            height: 450px;
-            width: 100%;
-}
 
  .dataTables_length{
             margin:0 18%;

@@ -6,6 +6,10 @@
         body{
             background-image: none;
         }       
+		#map {
+            height: 450px;
+            width: 100%;
+		}
     </style>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
