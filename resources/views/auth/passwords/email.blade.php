@@ -38,6 +38,9 @@
                                 </button>
                             </div>
                         </div>
+						
+						<div class="pull-right"> <a href="{{ route('login') }}"  >  << Back </a>   &nbsp;  &nbsp; </div>
+						
                     </form>
                 </div>
             </div>

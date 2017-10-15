@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tower;
+use Validator;
+use Config;
 
 class TowerController extends Controller
 {
@@ -24,7 +26,10 @@ class TowerController extends Controller
      */
     public function create()
     {
-        return view('tower-form');
+		$countires = Config::get('services.countires');
+		$states = Config::get('services.states');
+		
+        return view('tower-form',['countires'=>$countires,'states'=>$states]);
     }
 
     /**
@@ -35,7 +40,40 @@ class TowerController extends Controller
      */
     public function store(Request $request)
     {
-        return 'save';
+        Validator::make($request->all(), [
+            'towerid'  => 'string|max:255|unique:towers',                        
+        ])->validate();
+		
+		$tower = new Tower();
+		$tower->towerid = $request->towerid ;
+		$tower->sitename = $request->sitename ;
+		$tower->address = $request->address ;
+		$tower->country = $request->country ;
+		$tower->state = $request->state ;
+		$tower->city = $request->city ;
+		$tower->zipcode = $request->zipcode ;
+		$tower->latitude = $request->latitude ;
+		$tower->longitude = $request->longitude ;
+		$tower->height = $request->height ;
+		$tower->structuretype = $request->structuretype ;
+		$tower->infication = $request->infication ;
+		$tower->firstname = $request->firstname ;
+		$tower->lastname = $request->lastname ;
+		$tower->phone = $request->phone ;
+		$tower->email = $request->email ;
+		$tower->region = $request->region ;
+		$tower->towerowner = $request->towerowner ;
+		$tower->towerownershort = $request->towerownershort ;
+		$tower->btanumber = $request->btanumber ;
+		$tower->btaname = $request->btaname ;
+		$tower->mtanumber = $request->mtanumber ;
+		$tower->mtaname = $request->mtaname ;
+		$tower->newsite = $request->newsite ;
+		$tower->fccnumber = $request->fccnumber ;
+		$tower->stimsiteid = $request->stimsiteid ;
+		$tower->save();
+		
+		return redirect('home')->with('message','Tower details Successfully added');
     }
 
     /**
@@ -58,11 +96,13 @@ class TowerController extends Controller
     public function edit($id)
     {
         $tower = Tower::find($id);
+		$countires = Config::get('services.countires');
+		$states = Config::get('services.states');
 		
 		if(!$tower)
 			return abort(404);
 		
-		return view('tower-form',['tower'=>$tower]);
+		return view('tower-form',['tower'=>$tower,'countires'=>$countires,'states'=>$states]);
     }
 
     /**
@@ -74,7 +114,40 @@ class TowerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return  'edit';
+        Validator::make($request->all(), [
+            'towerid'  => 'string|max:255|unique:towers,towerid,'.$id.',id',                        
+        ])->validate();
+		
+		$tower = Tower::find($id);
+		$tower->towerid = $request->towerid ;
+		$tower->sitename = $request->sitename ;
+		$tower->address = $request->address ;
+		$tower->country = $request->country ;
+		$tower->state = $request->state ;
+		$tower->city = $request->city ;
+		$tower->zipcode = $request->zipcode ;
+		$tower->latitude = $request->latitude ;
+		$tower->longitude = $request->longitude ;
+		$tower->height = $request->height ;
+		$tower->structuretype = $request->structuretype ;
+		$tower->infication = $request->infication ;
+		$tower->firstname = $request->firstname ;
+		$tower->lastname = $request->lastname ;
+		$tower->phone = $request->phone ;
+		$tower->email = $request->email ;
+		$tower->region = $request->region ;
+		$tower->towerowner = $request->towerowner ;
+		$tower->towerownershort = $request->towerownershort ;
+		$tower->btanumber = $request->btanumber ;
+		$tower->btaname = $request->btaname ;
+		$tower->mtanumber = $request->mtanumber ;
+		$tower->mtaname = $request->mtaname ;
+		$tower->newsite = $request->newsite ;
+		$tower->fccnumber = $request->fccnumber ;
+		$tower->stimsiteid = $request->stimsiteid ;
+		$tower->save();
+		
+		return redirect('home')->with('message','Tower details Successfully edited');
     }
 
     /**
@@ -85,6 +158,11 @@ class TowerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tower = Tower::find($id);		
+		$tower->delete();
+		
+		return redirect('home')->with('message','Tower Successfully deleted');
+		
+		
     }
 }

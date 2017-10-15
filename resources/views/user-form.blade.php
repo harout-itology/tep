@@ -93,6 +93,8 @@
                                     </button>
                                 </div>
                             </div>
+							
+							<div class="pull-right"> <a href="{{ url('home') }}"  >  << Back </a>   &nbsp;  &nbsp; </div>
 
                         </form>
                     </div>

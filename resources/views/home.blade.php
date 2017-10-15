@@ -23,6 +23,12 @@
             <div class="col-md-12 ">
                 <div class="panel panel-default">
                     <div class="panel-body">
+					
+						@if( session('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
 
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#menu1"><i class="fa fa-bars" aria-hidden="true"></i> &nbsp;  List View</a></li>
