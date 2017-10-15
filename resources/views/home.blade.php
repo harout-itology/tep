@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('head')
-
     <style>
         body{
             background-image: none;
@@ -17,12 +16,12 @@
 			.dataTables_info{
 				padding-top:40px !important;
 			}
-		}
+		}			
     </style>
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" >
-
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
+		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" >
+		<link rel="stylesheet" href="https://www.cssscript.com/demo/pretty-checkbox-radio-inputs-with-bootstrap-and-awesome-bootstrap-checkbox-css/build.css" >
+	</style>
 @endsection
 
 @section('content')
@@ -36,8 +35,90 @@
                             <div class="alert alert-success">
                                 {{ session('message') }}
                             </div>
-                        @endif
+                        @endif			
 
+						<div class="dropdown serach-type">
+                            <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-expanded="false">
+                               <i class="fa fa-list-alt "></i>
+							</a>
+                            <ul class="dropdown-menu  pull-right menu-right " role="menu">   
+								<li>
+									<div class="radio radio-primary radio-inline">
+										<input type="radio" id="inlineRadio1" value="option1" name="type"  checked >
+										<label for="inlineRadio1"> Latitude/Longitude </label>
+									</div>
+								</li>
+                                <li class="divider"></li>
+								<li>
+									<div class="radio radio-primary radio-inline">
+										<input type="radio" id="inlineRadio2" value="option1" name="type" >
+										<label for="inlineRadio2"> MTA/BTA </label>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="radio radio-primary radio-inline">
+										<input type="radio" id="inlineRadio3" value="option1" name="type"   >
+										<label for="inlineRadio3"> Address/Location </label>
+									</div>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<div class="radio radio-primary radio-inline">
+										<input type="radio" id="inlineRadio4" value="option1" name="type"   >
+										<label for="inlineRadio4"> Site Name,Number or ASR Number </label>
+									</div>
+								</li>								
+                            </ul>
+                        </div>		
+						
+						<form id="form1" class="search navbar navbar-default "  method='get' action=''>						    
+							<input class="" type='text' placeholder='Latitude' name='latitude' >
+							<input class="" type='text' placeholder='Longitude' name='longitude' >							
+							<input class="" type='text' placeholder='Radius Mi' name='towerowner' >
+							<select class="" name='towerowner'>
+								<option value=''>All Owners</option>
+							</select>
+							<button class="" type='submit'>Search</button>
+						</form>
+						<form id="form2" class="search navbar navbar-default " style='display:none' method='get' action=''>						    
+							<select class="" name='mtaname'>
+								<option value=''>MTA Name</option>
+							</select>
+							<select class="" name='btaname'>
+								<option value=''>BTA Name</option>
+							</select>
+							<select class="" name='towerowner'>
+								<option value=''>All Owners</option>
+							</select>
+							<button class="" type='submit'>Search</button>
+						</form>					
+						<form id="form3" class="search navbar navbar-default " style='display:none' method='get' action=''>						    
+							<input class="" type='text' placeholder='Street Address' name='address' >
+							<input class="" type='text' placeholder='City' name='city' >
+							<select class="" name='state'>
+								<option value=''>State</option>
+							</select>
+							<select class="" name='country'>
+								<option value=''>Country</option>
+							</select>
+							<input class="" type='text' placeholder='Radius Mi' name='' >
+							<select class="" name='towerowner'>
+								<option value=''>All Owners</option>
+							</select>
+							<button class="" type='submit'>Search</button>
+						</form>					
+						<form id="form4" class="search navbar navbar-default " style='display:none' method='get' action=''>						    
+							<input class="" type='text' placeholder='Site Name' name='sitename' >
+							<input class="" type='text' placeholder='Site Number' name='sitenumber' >							
+							<input class="" type='text' placeholder='FCC Number' name='fccnumber' >
+							<select class="" name='towerowner'>
+								<option value=''>All Owners</option>
+							</select>
+							<button class="" type='submit'>Search</button>
+						</form>
+
+						
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#menu1"><i class="fa fa-bars" aria-hidden="true"></i> &nbsp;  List View</a></li>
                             <li><a data-toggle="tab" href="#menu2"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; Map View</a></li>
@@ -157,6 +238,26 @@
             map.setCenter(new google.maps.LatLng(37.0903563,-95.7829316));
         });
 		$('.home').addClass('active');
+		
+		$('#inlineRadio1').on('click', function () {
+            $('.search').hide();
+			$('#form1').show();
+        });
+		$('#inlineRadio2').on('click', function () {
+            $('.search').hide();
+			$('#form2').show();
+        });
+		$('#inlineRadio3').on('click', function () {
+            $('.search').hide();
+			$('#form3').show();
+        });
+		$('#inlineRadio4').on('click', function () {
+            $('.search').hide();
+			$('#form4').show();
+        });
+		
+		
+		
     </script>
 
 @endsection

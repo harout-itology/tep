@@ -62,9 +62,10 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{Auth::user()->name}}
                                 <span class="caret"></span></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown-header">Account</li>
-                                <li class="profile"><a href="{{url('/user-update')}}">Profile</a></li>
+                            <ul class="dropdown-menu" role="menu">                               
+                                <li class="profile"><a href="{{url('/user-update')}}">User Profile</a></li>
+                                <li class="divider"></li>
+								<li class="tower"><a href="{{url('/tower/create')}}">Add Tower</a></li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
