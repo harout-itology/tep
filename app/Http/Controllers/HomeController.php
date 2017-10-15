@@ -25,8 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $towers = Tower::all();
-
-        return view('home',['towers'=>$towers]);
+		return redirect('tower');
     }
 }

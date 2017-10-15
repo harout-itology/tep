@@ -4,19 +4,7 @@
     <style>
         body{
             background-image: none;
-        }       
-		#map {
-            height: 450px;
-            width: 100%;
-		}
-		@media only screen and (min-width: 768px) {
-			.dataTables_length{
-				padding:35px
-			}
-			.dataTables_info{
-				padding-top:40px !important;
-			}
-		}			
+        }    
     </style>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
 		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" >
@@ -44,76 +32,104 @@
                             <ul class="dropdown-menu  pull-right menu-right " role="menu">   
 								<li>
 									<div class="radio radio-primary radio-inline">
-										<input type="radio" id="inlineRadio1" value="option1" name="type"  checked >
+										<input type="radio" id="inlineRadio1" value="option1" name="type" {{ $form ==1  ? 'checked' : ''  }}   >
 										<label for="inlineRadio1"> Latitude/Longitude </label>
 									</div>
 								</li>
                                 <li class="divider"></li>
 								<li>
 									<div class="radio radio-primary radio-inline">
-										<input type="radio" id="inlineRadio2" value="option1" name="type" >
+										<input type="radio" id="inlineRadio2" value="option1" name="type" {{ $form ==2 ? 'checked' : ''  }} >
 										<label for="inlineRadio2"> MTA/BTA </label>
 									</div>
 								</li>
 								<li class="divider"></li>
 								<li>
 									<div class="radio radio-primary radio-inline">
-										<input type="radio" id="inlineRadio3" value="option1" name="type"   >
+										<input type="radio" id="inlineRadio3" value="option1" name="type" {{ $form ==3 ? 'checked' : ''  }}  >
 										<label for="inlineRadio3"> Address/Location </label>
 									</div>
 								</li>
 								<li class="divider"></li>
 								<li>
 									<div class="radio radio-primary radio-inline">
-										<input type="radio" id="inlineRadio4" value="option1" name="type"   >
+										<input type="radio" id="inlineRadio4" value="option1" name="type" {{ $form ==4 ? 'checked' : ''  }}  >
 										<label for="inlineRadio4"> Site Name,Number or ASR Number </label>
 									</div>
 								</li>								
                             </ul>
                         </div>		
 						
-						<form id="form1" class="search navbar navbar-default "  method='get' action=''>						    
-							<input class="" type='text' placeholder='Latitude' name='latitude' >
-							<input class="" type='text' placeholder='Longitude' name='longitude' >							
-							<input class="" type='text' placeholder='Radius Mi' name='towerowner' >
+						<form id="form1" class="search navbar navbar-default " @if($form!=1) style='display:none' @endif method='get' action=''>
+							<input type="hidden" name="form" value ="1" >						
+							<input class="" type='text' placeholder='Latitude' name='' >
+							<input class="" type='text' placeholder='Longitude' name='' >							
+							<input class="" type='text' placeholder='Radius Mi' name='' >
 							<select class="" name='towerowner'>
 								<option value=''>All Owners</option>
+								@foreach($towerowner as $item)
+									<option {{$r_towerowner==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+								@endforeach
 							</select>
 							<button class="" type='submit'>Search</button>
 						</form>
-						<form id="form2" class="search navbar navbar-default " style='display:none' method='get' action=''>						    
+						<form id="form2" class="search navbar navbar-default " @if($form!=2) style='display:none' @endif method='get' action=''>	
+							<input type="hidden" name="form" value ="2" >							    
 							<select class="" name='mtaname'>
 								<option value=''>MTA Name</option>
+								@foreach($mtaname as $item)
+									<option {{$r_mtaname==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+								@endforeach
 							</select>
 							<select class="" name='btaname'>
 								<option value=''>BTA Name</option>
+								@foreach($btaname as $item)
+									<option {{$r_btaname==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+								@endforeach
 							</select>
 							<select class="" name='towerowner'>
 								<option value=''>All Owners</option>
+								@foreach($towerowner as $item)
+									<option {{$r_towerowner==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+								@endforeach
 							</select>
 							<button class="" type='submit'>Search</button>
 						</form>					
-						<form id="form3" class="search navbar navbar-default " style='display:none' method='get' action=''>						    
-							<input class="" type='text' placeholder='Street Address' name='address' >
-							<input class="" type='text' placeholder='City' name='city' >
+						<form id="form3" class="search navbar navbar-default " @if($form!=3) style='display:none' @endif method='get' action=''>						    
+							<input type="hidden" name="form" value ="3" >
+							<input class="" type='text' placeholder='Street Address' name='address' value="{{ $r_address=='%' ? '' : $r_address  }}" >
+							<input class="" type='text' placeholder='City' name='city' value="{{ $r_city=='%' ? '' : $r_city  }}" >
 							<select class="" name='state'>
 								<option value=''>State</option>
+								@foreach($state as $key => $item)
+									<option {{$r_state==$key ? 'selected' : '' }} value='{{$key}}'>{{$item}}</option>								
+								@endforeach	
 							</select>
 							<select class="" name='country'>
 								<option value=''>Country</option>
+								@foreach($country as $key => $item)
+									<option {{$r_country==$key ? 'selected' : '' }} value='{{$key}}'>{{$item}}</option>								
+								@endforeach								
 							</select>
 							<input class="" type='text' placeholder='Radius Mi' name='' >
 							<select class="" name='towerowner'>
 								<option value=''>All Owners</option>
+								@foreach($towerowner as $item)
+									<option {{$r_towerowner==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+								@endforeach
 							</select>
 							<button class="" type='submit'>Search</button>
 						</form>					
-						<form id="form4" class="search navbar navbar-default " style='display:none' method='get' action=''>						    
-							<input class="" type='text' placeholder='Site Name' name='sitename' >
-							<input class="" type='text' placeholder='Site Number' name='sitenumber' >							
-							<input class="" type='text' placeholder='FCC Number' name='fccnumber' >
+						<form id="form4" class="search navbar navbar-default " @if($form!=4) style='display:none' @endif method='get' action=''>
+						<input type="hidden" name="form" value ="4" >						
+							<input class="" type='text' placeholder='Site Name' name='sitename' value="{{ $r_sitename=='%' ? '' : $r_sitename  }}"  >
+							<input class="" type='text' placeholder='Site Number' name='' >							
+							<input class="" type='text' placeholder='FCC Number' name='fccnumber' value="{{ $r_fccnumber=='%' ? '' : $r_fccnumber  }}" >
 							<select class="" name='towerowner'>
 								<option value=''>All Owners</option>
+								@foreach($towerowner as $item)
+									<option {{$r_towerowner==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+								@endforeach
 							</select>
 							<button class="" type='submit'>Search</button>
 						</form>
@@ -185,7 +201,7 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable( {
-                dom: '<"top"Bf>rt<"bottom"ilp>',
+                dom: '<"top"lB>rt<"bottom"ip>',
                 "scrollX": true,
                 buttons: [ 'colvis', 'csv', 'pdf', 'print' ],
                 /*initComplete: function () {

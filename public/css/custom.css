@@ -19,6 +19,17 @@ body {
     border-radius: 25px;
 }
 
+#map {
+    height: 450px;
+    width: 100%;
+}
+.top  .dt-buttons{
+	float:right;
+}
+.pagination{
+	margin:0px;
+}
+
 .serach-type{
 	float:right;
 	min-height: 36px;

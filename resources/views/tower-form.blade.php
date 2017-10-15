@@ -48,9 +48,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="country" class="col-md-2 control-label">Country</label>
+                                <label for="country" class="col-md-2 control-label">Country *</label>
                                 <div class="col-md-10">
-								<select id="country" class="form-control"  name="country" >
+								<select id="country" class="form-control"  name="country" required >
 									<option value=''>Select</option>
 									@foreach($countires as $key => $value)
 										<option  @if(old('country') == $key) {{'selected'}} @elseif(@$tower->country == $key) {{'selected'}} @endif value='{{$key}}'>{{$value}}</option>
@@ -142,9 +142,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="towerowner" class="col-md-2 control-label">Tower Owner</label>
+                                <label for="towerowner" class="col-md-2 control-label">Tower Owner *</label>
                                 <div class="col-md-10">
-                                    <input id="towerowner" type="text" class="form-control" name="towerowner" value="{{ old('towerowner') ? old('towerowner') : @$tower->towerowner }}" >                                    
+                                    <input id="towerowner" type="text" class="form-control" name="towerowner" value="{{ old('towerowner') ? old('towerowner') : @$tower->towerowner }}" required >                                    
                                 </div>
                             </div>							
 							<div class="form-group">
@@ -160,9 +160,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="btaname" class="col-md-2 control-label">BTA Name</label>
+                                <label for="btaname" class="col-md-2 control-label">BTA Name *</label>
                                 <div class="col-md-10">
-                                    <input id="btaname" type="text" class="form-control" name="btaname" value="{{ old('btaname') ? old('btaname') : @$tower->btaname }}" >                                    
+                                    <input id="btaname" type="text" class="form-control" name="btaname" value="{{ old('btaname') ? old('btaname') : @$tower->btaname }}" required >                                    
                                 </div>
                             </div>							
 							<div class="form-group">
@@ -172,9 +172,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="mtaname" class="col-md-2 control-label">MTA Name</label>
+                                <label for="mtaname" class="col-md-2 control-label">MTA Name *</label>
                                 <div class="col-md-10">
-                                    <input id="mtaname" type="text" class="form-control" name="mtaname" value="{{ old('mtaname') ? old('mtaname') : @$tower->mtaname }}" >                                    
+                                    <input id="mtaname" type="text" class="form-control" name="mtaname" value="{{ old('mtaname') ? old('mtaname') : @$tower->mtaname }}" required >                                    
                                 </div>
                             </div>							
 							<div class="form-group">
