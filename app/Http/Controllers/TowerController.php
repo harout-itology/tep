@@ -32,6 +32,8 @@ class TowerController extends Controller
 		$btaname = Tower::groupBy('btaname')->pluck('btaname')->toArray();
 		$country = Config::get('services.countires');
 		$state = Config::get('services.states');
+		$city = Tower::groupBy('city')->pluck('city')->toArray();
+		$infication = Tower::groupBy('infication')->pluck('infication')->toArray();
 
 		$request->towerowner ? $r_towerowner = [$request->towerowner] : $r_towerowner = $towerowner;
 		$request->mtaname ? $r_mtaname = [$request->mtaname] : $r_mtaname = $mtaname;
@@ -42,6 +44,7 @@ class TowerController extends Controller
 		$request->address ? $r_address = $request->address : $r_address ='%' ;
 		$request->fccnumber ? $r_fccnumber = $request->fccnumber : $r_fccnumber ='%' ;
 		$request->sitename ? $r_sitename = $request->sitename : $r_sitename ='%' ;
+		$request->infication ? $r_infication = $request->infication : $r_infication ='%' ;
 	
 		$towers = Tower::
 			whereIn('towerowner',$r_towerowner)->
@@ -64,10 +67,11 @@ class TowerController extends Controller
 							'btaname'=>$btaname,'r_btaname'=>$request->btaname,
 							'country'=>$country,'r_country'=>$request->country,
 							'state'=>$state,'r_state'=>$request->state,
-							'r_city'=>$r_city,
+							'city'=>$city,'r_city'=>$r_city,
 							'r_address'=>$r_address,
 							'r_fccnumber'=>$r_fccnumber,
-							'r_sitename'=>$r_sitename
+							'r_sitename'=>$r_sitename,
+							'infication'=>$infication,'r_infication'=>$r_infication,
 							]);
     }
 

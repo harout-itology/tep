@@ -37,32 +37,26 @@ body {
 }
 
 
-							.search{								
-								float:right;
-								padding:5px;
-								min-height: 38px;
-							}
-							.search input, .search select{
-								width:120px;
-								float:left;
-								border:none;
-								background-color:transparent;
-								height: 26px;
-								margin: 0  0  0 10px;	
-								border-right: solid #ddd thin;	
-							}							
-							.search button{
-								width:70px;
-								float:left;
-							}		
-
-							
-							
+.search{								
+	float:right;
+	padding:5px;
+	min-height: 38px;
+}
+.search input, .search select{
+	width:120px;
+	float:left;
+	border:none;
+	background-color:transparent;
+	height: 26px;
+	margin: 0  0  0 10px;	
+	border-right: solid #ddd thin;	
+}							
+.search button{
+	width:70px;
+	float:left;
+}								
 .menu-right{
 	padding:10px;
 	background-color: #f8f8f8 !important;
 	min-width:300px;
-}	
-							
-							
-							
+}

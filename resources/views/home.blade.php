@@ -15,20 +15,23 @@
 @section('content')
     <div class="container" style="width: 100%">
         <div class="row  ">
-            <div class="col-md-12 ">
-                <div class="panel panel-default">
-                    <div class="panel-body">
+            <div class="col-md-10">
+						
+                <div id="main" class="panel panel-default">
+                    <div class="panel-body">													
 					
+											
 						@if( session('message'))
                             <div class="alert alert-success">
                                 {{ session('message') }}
                             </div>
                         @endif			
 
-						<div class="dropdown serach-type">
-                            <a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-expanded="false">
+						<div class="dropdown serach-type">						
+                            
+							<a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" role="button" aria-expanded="false">
                                <i class="fa fa-list-alt "></i>
-							</a>
+							</a>						
                             <ul class="dropdown-menu  pull-right menu-right " role="menu">   
 								<li>
 									<div class="radio radio-primary radio-inline">
@@ -134,8 +137,7 @@
 							<button class="" type='submit'>Search</button>
 						</form>
 
-						
-                        <ul class="nav nav-tabs">
+						<ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#menu1"><i class="fa fa-bars" aria-hidden="true"></i> &nbsp;  List View</a></li>
                             <li><a data-toggle="tab" href="#menu2"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; Map View</a></li>
                         </ul><br>
@@ -177,16 +179,153 @@
                                 <div id="map"></div>
                             </div>
                         </div>
-
-                    </div>
+						
+                    
+					
+						
+					</div>
                 </div>
-            </div>
+            
+			</div>
+			<div class="col-md-2">
+	
+  <div class="panel-group" id="accordion">
+  
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">City</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+			<form id='f-city' method='get' action=''>	
+				<ul class="list-group list-unstyled">   
+					<li >
+						@foreach($city as $item)
+							@if($item)
+								<div class="checkbox checkbox-primary">
+									<input class='filter' {{$r_city == $item ? "checked" : "" }} name="country" id="{{$item}}" type="checkbox" value="{{$item}}" >
+									<label for="{{$item}}">{{$item}}</label>
+								</div>
+							@endif
+						@endforeach
+					</li>                                							
+				</ul>
+			</form>
+		</div>
+      </div>
+    </div>
+	
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Country</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+			<form id='f-country' method='get' action=''>	
+				<ul class="list-group list-unstyled">   
+					<li >
+						@foreach($country as $key => $item)
+							<div class="checkbox checkbox-primary">
+								<input class='filter' {{$r_country == $key ? "checked" : "" }} name="country" id="{{$key}}" type="checkbox" value="{{$key}}" >
+								<label for="{{$key}}">{{$item}}</label>
+							</div>
+						@endforeach
+					</li>                                							
+				</ul>
+			</form>
+		</div>
+      </div>
+    </div>
+    
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">State</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+		<form id='f-state' method='get' action=''>	
+				<ul class="list-group list-unstyled">   
+					<li >
+						@foreach($state as $key => $item)
+							<div class="checkbox checkbox-primary">
+								<input class='filter' {{$r_state == $key ? "checked" : "" }} name="country" id="{{$key}}" type="checkbox" value="{{$key}}" >
+								<label for="{{$key}}">{{$item}}</label>
+							</div>
+						@endforeach
+					</li>                                							
+				</ul>
+			</form>
+		</div>
+      </div>
+    </div>
+	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Ification</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+			<form id='f_infication' method='get' action=''>	
+				<ul class="list-group list-unstyled">   
+					<li >
+						@foreach($infication as $item)
+							@if($item)
+								<div class="checkbox checkbox-primary">
+									<input class='filter' {{$r_infication == $item ? "checked" : "" }} name="country" id="{{$item}}" type="checkbox" value="{{$item}}" >
+									<label for="{{$item}}">{{$item}}</label>
+								</div>
+							@endif
+						@endforeach
+					</li>                                							
+				</ul>
+			</form>
+		</div>
+      </div>
+    </div>
+	
+	<div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Tower Owner</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">
+			<form id='f_towerowner' method='get' action=''>	
+				<ul class="list-group list-unstyled">   
+					<li >
+						@foreach($towerowner as $item)
+							@if($item)
+								<div class="checkbox checkbox-primary">
+									<input class='filter' {{$r_towerowner == $item ? "checked" : "" }} name="country" id="{{$item}}" type="checkbox" value="{{$item}}" >
+									<label for="{{$item}}">{{$item}}</label>
+								</div>
+							@endif
+						@endforeach
+					</li>                                							
+				</ul>
+			</form>
+		</div>
+      </div>
+    </div>
+							
+  </div> 
+
+					
+			</div>			
         </div>
     </div>
 @endsection
 
 @section('foot')
-
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
@@ -197,32 +336,18 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
     <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
     <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
-
     <script>
+		// data table
         $(document).ready(function() {
             $('#example').DataTable( {
                 dom: '<"top"lB>rt<"bottom"ip>',
                 "scrollX": true,
-                buttons: [ 'colvis', 'csv', 'pdf', 'print' ],
-                /*initComplete: function () {
-                    this.api().columns().every( function () {
-                        var column = this;
-                        var select = $('<select class="form-control" ><option value="">All</option></select>').appendTo( $(column.footer()).empty() ).on( 'change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                            column.search( val ? '^'+val+'$' : '', true, false ).draw();
-                         } );
-                        column.data().unique().sort().each( function ( d, j ) {
-                            select.append( '<option value="'+d+'">'+d+'</option>' )
-                        } );
-                    } );
-                }*/
+                buttons: [ 'colvis', 'csv', 'pdf', 'print' ]               
             } );
             $('.dt-button').addClass('btn btn-default').removeClass('dt-button');
 			
         } );
-    </script>
-
-    <script>
+		// google map
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
@@ -247,7 +372,6 @@
         }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFW6ifz4HBeEU1-ZDHUgSd8eC_Krq8eB4&callback=initMap"></script>
-
     <script>
         $('.nav-tabs').on('shown.bs.tab', function () {
             google.maps.event.trigger(map, 'resize');
@@ -270,10 +394,9 @@
 		$('#inlineRadio4').on('click', function () {
             $('.search').hide();
 			$('#form4').show();
-        });
-		
-		
-		
-    </script>
+        });	
+</script>
 
+		
+</script>
 @endsection
