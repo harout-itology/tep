@@ -10,6 +10,14 @@
             height: 450px;
             width: 100%;
 		}
+		@media only screen and (min-width: 768px) {
+			.dataTables_length{
+				padding:35px
+			}
+			.dataTables_info{
+				padding-top:40px !important;
+			}
+		}
     </style>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
@@ -50,19 +58,7 @@
                                         <th>Infication</th>
                                         <th>Owner</th>
                                     </tr>
-                                    </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Tower ID</th>
-                                        <th>Site Name</th>
-                                        <th>Address</th>
-                                        <th>City</th>
-                                        <th>Country</th>
-                                        <th>Height</th>
-                                        <th>Infication</th>
-                                        <th>Owner</th>
-                                    </tr>
-                                    </tfoot>
+                                    </thead>                                    
                                     <tbody>
                                     @foreach($towers as $item)
                                     <tr>
@@ -108,10 +104,10 @@
     <script>
         $(document).ready(function() {
             $('#example').DataTable( {
-                dom: '<"top"Bfl>rt<"bottom"ip>',
+                dom: '<"top"Bf>rt<"bottom"ilp>',
                 "scrollX": true,
                 buttons: [ 'colvis', 'csv', 'pdf', 'print' ],
-                initComplete: function () {
+                /*initComplete: function () {
                     this.api().columns().every( function () {
                         var column = this;
                         var select = $('<select class="form-control" ><option value="">All</option></select>').appendTo( $(column.footer()).empty() ).on( 'change', function () {
@@ -122,7 +118,7 @@
                             select.append( '<option value="'+d+'">'+d+'</option>' )
                         } );
                     } );
-                }
+                }*/
             } );
             $('.dt-button').addClass('btn btn-default').removeClass('dt-button');
 			
