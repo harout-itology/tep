@@ -93,8 +93,8 @@
 										@foreach($city as $item)
 											@if($item)
 												<div class="checkbox checkbox-primary">
-													<input class='filter' name="country" checked id="{{$item}}" type="checkbox" value="{{$item}}" >
-													<label for="{{$item}}">{{$item}}</label>
+													<input class='city_filter' id="city_{{$item}}" checked type="checkbox" value="{{$item}}" >
+													<label for="city_{{$item}}">{{$item}}</label>
 												</div>
 											@endif
 										@endforeach
@@ -117,8 +117,8 @@
 									<li >
 										@foreach($country as $key => $item)
 											<div class="checkbox checkbox-primary">
-												<input class='filter' name="country" checked id="{{$key}}" type="checkbox" value="{{$key}}" >
-												<label for="{{$key}}">{{$item}}</label>
+												<input class='country_filter'  checked id="country_{{$key}}" type="checkbox" value="{{$key}}" >
+												<label for="country_{{$key}}">{{$item}}</label>
 											</div>
 										@endforeach
 									</li>                                							
@@ -220,13 +220,40 @@
     <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$google_api}}&callback=initMap"></script>
     <script>
+	
+		
 		// data table        
-        $('#example').DataTable( {
+        var table = $('#example').dataTable( {
             dom: '<"top"lB>rt<"bottom"ip>',
             "scrollX": true,
             buttons: [ 'colvis', 'csv', 'pdf', 'print' ]               
+        });		
+        $('.dt-button').addClass('btn btn-default').removeClass('dt-button');     
+		
+		// filter city
+		$('.city_filter').on('click', function () {
+			var values = [];
+			$('.city_filter').each(function() {
+				if($(this).is(':checked'))
+					values.push($(this).val());
+			});
+			var choosedString = values.join("|");
+			table.fnFilter(choosedString,3,true,false);			
         });
-        $('.dt-button').addClass('btn btn-default').removeClass('dt-button');       
+		// filter country
+		$('.country_filter').on('click', function () {
+			var values = [];
+			$('.country_filter').each(function() {
+				if($(this).is(':checked'))
+					values.push($(this).val());
+			});
+			var choosedString = values.join("|");
+			table.fnFilter(choosedString,4,true,false);			
+        });
+
+	
+
+		
 		// google map
         var map;
         function initMap() {
@@ -257,5 +284,6 @@
         });
 		// home menu activation
 		$('.home').addClass('active');
-</script>
+	
+	</script>
 @endsection
