@@ -27,51 +27,23 @@ class TowerController extends Controller
      */
     public function index(Request $request)
     {
-		$towerowner = Tower::groupBy('towerowner')->pluck('towerowner')->toArray();
-		$mtaname = Tower::groupBy('mtaname')->pluck('mtaname')->toArray();
-		$btaname = Tower::groupBy('btaname')->pluck('btaname')->toArray();
+		$towerowner = Tower::groupBy('towerowner')->pluck('towerowner')->toArray();		
 		$country = Config::get('services.countires');
 		$state = Config::get('services.states');
 		$city = Tower::groupBy('city')->pluck('city')->toArray();
 		$infication = Tower::groupBy('infication')->pluck('infication')->toArray();
 
-		$request->towerowner ? $r_towerowner = [$request->towerowner] : $r_towerowner = $towerowner;
-		$request->mtaname ? $r_mtaname = [$request->mtaname] : $r_mtaname = $mtaname;
-		$request->btaname ? $r_btaname = [$request->btaname] : $r_btaname = $btaname;
-		$request->country ? $r_country = [$request->country] : $r_country = array_keys($country);
-		$request->state ? $r_state = [$request->state] : $r_state = array_keys($state);
-		$request->city ? $r_city = $request->city : $r_city ='%' ;
-		$request->address ? $r_address = $request->address : $r_address ='%' ;
-		$request->fccnumber ? $r_fccnumber = $request->fccnumber : $r_fccnumber ='%' ;
-		$request->sitename ? $r_sitename = $request->sitename : $r_sitename ='%' ;
-		$request->infication ? $r_infication = $request->infication : $r_infication ='%' ;
-	
-		$towers = Tower::
-			whereIn('towerowner',$r_towerowner)->
-			whereIn('mtaname',$r_mtaname)->
-			whereIn('btaname',$r_btaname)->
-			whereIn('country',$r_country)->
-			whereIn('state',$r_state)->
-			where('city','like','%'.$r_city.'%')->
-			where('address','like','%'.$r_address.'%')->
-			where('fccnumber','like','%'.$r_fccnumber.'%')->
-			where('sitename','like','%'.$r_sitename.'%')->
-		get();		
-	
-		$request->form ? $form=$request->form : $form=1;
+		$request->towerowner ? $r_towerowner = [$request->towerowner] : $r_towerowner = $towerowner;		
+		$towers = Tower::whereIn('towerowner',$r_towerowner)->get();		
 
         return view('home',[
-							'towers'=>$towers,'form'=>$form,
-							'towerowner'=>$towerowner,'r_towerowner'=>$request->towerowner,
-							'mtaname'=>$mtaname,'r_mtaname'=>$request->mtaname,
-							'btaname'=>$btaname,'r_btaname'=>$request->btaname,
-							'country'=>$country,'r_country'=>$request->country,
-							'state'=>$state,'r_state'=>$request->state,
-							'city'=>$city,'r_city'=>$r_city,
-							'r_address'=>$r_address,
-							'r_fccnumber'=>$r_fccnumber,
-							'r_sitename'=>$r_sitename,
-							'infication'=>$infication,'r_infication'=>$r_infication,
+							'towers'=>$towers,
+							'towerowner'=>$towerowner,'r_towerowner'=>$request->towerowner,							
+							'country'=>$country,
+							'state'=>$state,
+							'city'=>$city,							
+							'infication'=>$infication,
+							'google_api'=>Config::get('google.setDeveloperKey')
 							]);
     }
 

@@ -106,7 +106,7 @@ return [
 	],
 	
 	'countires' => [
-        'AF' => 'Afghanistan',
+        /*'AF' => 'Afghanistan',
         'AL' => 'Albania',
         'DZ' => 'Algeria',
         'AS' => 'American Samoa',
@@ -354,9 +354,9 @@ return [
         'UA' => 'Ukraine',
         'SU' => 'Union of Soviet Socialist Republics',
         'AE' => 'United Arab Emirates',
-        'GB' => 'United Kingdom',
+        'GB' => 'United Kingdom',*/
         'US' => 'United States',
-        'ZZ' => 'Unknown or Invalid Region',
+        /*'ZZ' => 'Unknown or Invalid Region',
         'UY' => 'Uruguay',
         'UZ' => 'Uzbekistan',
         'VU' => 'Vanuatu',
@@ -369,7 +369,7 @@ return [
         'YE' => 'Yemen',
         'ZM' => 'Zambia',
         'ZW' => 'Zimbabwe',
-        'AX' => 'Åland Islands'
+        'AX' => 'Åland Islands'*/
     ],
 
 ];
