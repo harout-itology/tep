@@ -14,7 +14,7 @@
     <div class="container" style="width: 100%">
         <div class="row  ">
 		
-            <div class="col-md-10">						
+            <div class="col-md-10 main-bar">						
                 <div id="main" class="panel panel-default">
                     <div class="panel-body">											
 						@if( session('message'))
@@ -33,6 +33,7 @@
 								@endforeach
 							</select>
 							<button class="" type='submit'>Search</button>
+							<i class="btn btn-primary menu-open fa fa-arrow-left" aria-hidden="true" style='display:none'></i>
 						</form>						
 						<ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#menu1"><i class="fa fa-bars" aria-hidden="true"></i> &nbsp;  List View</a></li>
@@ -48,6 +49,7 @@
                                         <th>Address</th>
                                         <th>City</th>
                                         <th>Country</th>
+										<th>State</th>
                                         <th>Height</th>
                                         <th>Infication</th>
                                         <th>Owner</th>
@@ -56,11 +58,12 @@
                                     <tbody>
                                     @foreach($towers as $item)
                                     <tr>
-                                        <td><a href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
+                                        <td><a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
                                         <td>{{$item->sitename}}</td>
                                         <td>{{$item->address}}</td>
                                         <td>{{$item->city}}</td>
                                         <td>{{$item->country}}</td>
+										<td>{{$item->state}}</td>
                                         <td>{{$item->height}}</td>
                                         <td>{{$item->infication}}</td>
                                         <td>{{$item->towerowner}}</td>
@@ -77,8 +80,16 @@
                 </div>            
 			</div>
 			
-			<div class="col-md-2">	
-			    <div class="panel-group" id="accordion">			  
+			<div class="col-md-2 menu-close-bar">	
+			    <div class="panel-group" id="accordion">						
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+							  <i class="btn menu-close fa fa-times pull-right" aria-hidden="true" style='margin-top:-5px'></i>
+							  <b>Filters List</b>
+							</h4>
+					    </div>
+					</div>						
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
@@ -140,8 +151,8 @@
 									<li >
 										@foreach($state as $key => $item)
 											<div class="checkbox checkbox-primary">
-												<input class='filter'name="country" checked id="{{$key}}" type="checkbox" value="{{$key}}" >
-												<label for="{{$key}}">{{$item}}</label>
+												<input class='state_filter'  checked id="state_{{$key}}" type="checkbox" value="{{$key}}" >
+												<label for="state_{{$key}}">{{$item}}</label>
 											</div>
 										@endforeach
 									</li>                                							
@@ -153,7 +164,7 @@
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Ification</a>
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Infication</a>
 						</h4>
 					  </div>
 					  <div id="collapse4" class="panel-collapse collapse">
@@ -164,8 +175,8 @@
 										@foreach($infication as $item)
 											@if($item)
 												<div class="checkbox checkbox-primary">
-													<input class='filter' name="country" checked id="{{$item}}" type="checkbox" value="{{$item}}" >
-													<label for="{{$item}}">{{$item}}</label>
+													<input class='infication_filter'  checked id="infication_{{$item}}" type="checkbox" value="{{$item}}" >
+													<label for="infication_{{$item}}">{{$item}}</label>
 												</div>
 											@endif
 										@endforeach
@@ -189,8 +200,8 @@
 										@foreach($towerowner as $item)
 											@if($item)
 												<div class="checkbox checkbox-primary">
-													<input class='filter' name="country" checked id="{{$item}}" type="checkbox" value="{{$item}}" >
-													<label for="{{$item}}">{{$item}}</label>
+													<input class='owner_filter' checked id="owner_{{$item}}" type="checkbox" value="{{$item}}" >
+													<label for="owner_{{$item}}">{{$item}}</label>
 												</div>
 											@endif
 										@endforeach
@@ -220,22 +231,33 @@
     <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$google_api}}&callback=initMap"></script>
     <script>
-	
-		
+		// close the right
+		$('.menu-close').on('click', function () {
+			$('.menu-open').show();
+			$('.menu-close-bar').hide();
+			$('.main-bar').removeClass('col-md-10').addClass('col-md-12');
+			table.fnDraw();
+        });
+		// open the right	
+		$('.menu-open').on('click', function () {
+			$('.menu-open').hide();
+			$('.menu-close-bar').show();
+			$('.main-bar').removeClass('col-md-12').addClass('col-md-10');
+			table.fnDraw();
+        });	
 		// data table        
-        var table = $('#example').dataTable( {
+        var table = $('#example').dataTable( {		
             dom: '<"top"lB>rt<"bottom"ip>',
             "scrollX": true,
             buttons: [ 'colvis', 'csv', 'pdf', 'print' ]               
         });		
-        $('.dt-button').addClass('btn btn-default').removeClass('dt-button');     
-		
+        $('.dt-button').addClass('btn btn-default').removeClass('dt-button'); 	
 		// filter city
 		$('.city_filter').on('click', function () {
 			var values = [];
 			$('.city_filter').each(function() {
 				if($(this).is(':checked'))
-					values.push($(this).val());
+					values.push('^'+$(this).val()+'$');
 			});
 			var choosedString = values.join("|");
 			table.fnFilter(choosedString,3,true,false);			
@@ -245,15 +267,41 @@
 			var values = [];
 			$('.country_filter').each(function() {
 				if($(this).is(':checked'))
-					values.push($(this).val());
+					values.push('^'+$(this).val()+'$');
 			});
 			var choosedString = values.join("|");
 			table.fnFilter(choosedString,4,true,false);			
         });
-
-	
-
-		
+		// filter state
+		$('.state_filter').on('click', function () {
+			var values = [];
+			$('.state_filter').each(function() {
+				if($(this).is(':checked'))
+					values.push('^'+$(this).val()+'$');
+			});
+			var choosedString = values.join("|");
+			table.fnFilter(choosedString,5,true,false);			
+        });
+		// filter infication
+		$('.infication_filter').on('click', function () {
+			var values = [];
+			$('.infication_filter').each(function() {
+				if($(this).is(':checked'))
+					values.push('^'+$(this).val()+'$');
+			});
+			var choosedString = values.join("|");
+			table.fnFilter(choosedString,7,true,false);			
+        });
+		// filter owner
+		$('.owner_filter').on('click', function () {
+			var values = [];
+			$('.owner_filter').each(function() {
+				if($(this).is(':checked'))
+					values.push('^'+$(this).val()+'$');
+			});
+			var choosedString = values.join("|");
+			table.fnFilter(choosedString,8,true,false);			
+        });
 		// google map
         var map;
         function initMap() {
@@ -281,6 +329,7 @@
         $('.nav-tabs').on('shown.bs.tab', function () {
             google.maps.event.trigger(map, 'resize');
             map.setCenter(new google.maps.LatLng(37.0903563,-95.7829316));
+			table.fnDraw();
         });
 		// home menu activation
 		$('.home').addClass('active');

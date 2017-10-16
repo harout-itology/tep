@@ -115,9 +115,9 @@ return [
         'AI' => 'Anguilla',
         'AQ' => 'Antarctica',
         'AG' => 'Antigua and Barbuda',
-        'AR' => 'Argentina',
+        'AR' => 'Argentina',*/
         'AM' => 'Armenia',
-        'AW' => 'Aruba',
+        /*'AW' => 'Aruba',
         'AU' => 'Australia',
         'AT' => 'Austria',
         'AZ' => 'Azerbaijan',
