@@ -4,7 +4,13 @@
     <style>
         body{
             background-image: none;
-        }    
+			overflow: hidden;
+        }  
+		@media only screen and (max-width: 768px) {
+			.mobile, .dt-buttons, #example_length{
+				display:none;
+			}
+		}			
     </style>
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
 	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" >
@@ -22,7 +28,7 @@
                                 {{ session('message') }}
                             </div>
                         @endif
-						<form class="search navbar navbar-default" method='get' action=''>											
+						<form class="search navbar navbar-default mobile" method='get' action=''>											
 							<input class="" type='text' placeholder='Latitude' name='' >
 							<input class="" type='text' placeholder='Longitude' name='' >							
 							<input class="" type='text' placeholder='Radius Mi' name='' >
@@ -81,7 +87,7 @@
 			</div>
 			
 			<div class="col-md-2 menu-close-bar">	
-			    <div class="panel-group" id="accordion">						
+			    <div class="panel-group pre-scrollable" id="accordion" style='min-height:530px'>						
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
@@ -246,8 +252,9 @@
 			table.fnDraw();
         });	
 		// data table        
-        var table = $('#example').dataTable( {		
-            dom: '<"top"lB>rt<"bottom"ip>',
+        var table = $('#example').dataTable( {	
+			 "scrollY":        "300px",
+            dom: '<"top"lBf>rt<"bottom"ip>',
             "scrollX": true,
             buttons: [ 'colvis', 'csv', 'pdf', 'print' ]               
         });		

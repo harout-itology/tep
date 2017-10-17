@@ -37,7 +37,7 @@
 <body>
 
     @if(Auth::check())
-        <nav class="navbar navbar-default navbar-static-top">
+        <nav class="navbar navbar-default  navbar-fixed-top">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -50,7 +50,7 @@
                     <a class="navbar-brand" href="{{url('/')}}">
                         <div class="row"  >
                             <div class="col-md-6"><img src="{{url('/public/img/logo.png')}}"  width="30"/></div>
-                            <div class="col-md-6">{{ config('app.name', 'Laravel') }}</div>
+                            <div class="col-md-6 mobile">{{ config('app.name', 'Laravel') }}</div>
                         </div>
                     </a>
                 </div>
@@ -83,15 +83,17 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-    @endif
+    <br><br><br><br>
+	@endif
 
     @yield('content')
 
     <div class="container-fluid main-container ">
-        <footer class="footer">
+        <footer class="footer navbar-fixed-bottom">
             <div class="col-md-12 text-center">
             Copyright &COPY; by 2017 <a target="_blank" href="http://www.pingpong-labs.com">MegaProgramming</a>, All Rights Reserved
             </div>
+			<br>
         </footer>
     </div>
 

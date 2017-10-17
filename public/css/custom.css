@@ -1,12 +1,18 @@
 body {
     background: url('../img/bg.jpg');
 }
+/* footer */
+.footer{
+	background-color:#e7e7e7;
+	z-index:9999;
+	height:40px;
+	padding:10px;
+}
 /* login */
 @media only screen and (min-width: 768px) {
     .login .vertical-offset {
-    padding-top: 160px;
-}
-
+		padding-top: 160px;
+	}
 	.login .vertical-offset2 {
 		padding-top: 100px;
 	}
@@ -23,9 +29,6 @@ body {
     width: 100%;
 }
 /* table */
-.top  .dt-buttons{
-	float:right;
-}
 .pagination{
 	margin:0px;
 }
