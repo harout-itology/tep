@@ -28,8 +28,8 @@ class TowerController extends Controller
     public function index(Request $request)
     {
 		$towerowner = Tower::groupBy('towerowner')->pluck('towerowner')->toArray();		
-		$country = Config::get('services.countires');
-		$state = Config::get('services.states');
+		$country = Tower::groupBy('country')->pluck('country')->toArray();	
+		$state = Tower::groupBy('state')->pluck('state')->toArray();
 		$city = Tower::groupBy('city')->pluck('city')->toArray();
 		$infication = Tower::groupBy('infication')->pluck('infication')->toArray();
 

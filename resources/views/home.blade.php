@@ -126,10 +126,10 @@
 							<form id='f-country' method='get' action=''>	
 								<ul class="list-group list-unstyled">   
 									<li >
-										@foreach($country as $key => $item)
+										@foreach($country as $item)
 											<div class="checkbox checkbox-primary">
-												<input class='country_filter'  checked id="country_{{$key}}" type="checkbox" value="{{$key}}" >
-												<label for="country_{{$key}}">{{$item}}</label>
+												<input class='country_filter'  checked id="country_{{$item}}" type="checkbox" value="{{$item}}" >
+												<label for="country_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
 									</li>                                							
@@ -149,10 +149,10 @@
 						<form id='f-state' method='get' action=''>	
 								<ul class="list-group list-unstyled">   
 									<li >
-										@foreach($state as $key => $item)
+										@foreach($state as $item)
 											<div class="checkbox checkbox-primary">
-												<input class='state_filter'  checked id="state_{{$key}}" type="checkbox" value="{{$key}}" >
-												<label for="state_{{$key}}">{{$item}}</label>
+												<input class='state_filter'  checked id="state_{{$item}}" type="checkbox" value="{{$item}}" >
+												<label for="state_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
 									</li>                                							
