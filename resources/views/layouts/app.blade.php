@@ -32,9 +32,20 @@
     <link rel="stylesheet" href="{{url('/public/css/custom.css')}}" >
 
     @yield('head')
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 
 </head>
 <body>
+<script>
+$(window).load(function() {
+		// Animate loader off screen
+		$(".se-pre-con").fadeOut();
+});
+</script>
+<div class="se-pre-con"></div>
 
     @if(Auth::check())
         <nav class="navbar navbar-default  navbar-fixed-top">
@@ -97,8 +108,6 @@
         </footer>
     </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -107,6 +116,6 @@
     <script href="{{url('/public/js/custom.js')}}" ></script>
 
     @yield('foot')
-
+	
 </body>
 </html>

@@ -34,7 +34,7 @@ class TowerController extends Controller
 		$infication = Tower::groupBy('infication')->pluck('infication')->toArray();
 
 		$request->towerowner ? $r_towerowner = [$request->towerowner] : $r_towerowner = $towerowner;		
-		$towers = Tower::whereIn('towerowner',$r_towerowner)->limit(1000)->get();		
+		$towers = Tower::whereIn('towerowner',$r_towerowner)->limit(10000)->get();		
 
         return view('home',[
 							'towers'=>$towers,
