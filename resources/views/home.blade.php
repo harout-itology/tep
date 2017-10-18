@@ -22,7 +22,7 @@
                                 {{ session('message') }}
                             </div>
                         @endif
-						<form class="search navbar navbar-default mobile" method='get' action=''>											
+						<form class="search navbar navbar-default mobile" method='get' action='' onsubmit="return my_submit()">											
 							<input class="" type='text' placeholder='Latitude' name='' >
 							<input class="" type='text' placeholder='Longitude' name='' >							
 							<input class="" type='text' placeholder='Radius Mi' name='' >
@@ -32,7 +32,7 @@
 									<option {{$r_towerowner[0]==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
 								@endforeach
 							</select>
-							<button class="" type='submit'>Search</button>
+							<button class="submit" type='submit'>Search</button>
 							<i class="btn btn-primary menu-open fa fa-arrow-left" aria-hidden="true" style='display:none'></i>
 						</form>						
 						<ul class="nav nav-tabs">
@@ -220,11 +220,18 @@
     <script src="{{url('public/jquery/buttons.print.min.js')}}"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$google_api}}&callback=initMap"></script>
     <script>
+		//  show loading
+		function my_submit(){
+			$(".se-pre-con").fadeIn();			
+		}
+		$('.pagination li').on('click', function () {
+			$(".se-pre-con").fadeIn();	
+		});
 		// bootstrap model
 		$(function(){
 		  $(".open-AddBookDialog").click(function(){
 			 $('#bookId').val($(this).data('id'));
-			$("#addBookDialog").modal("show");
+			 $("#addBookDialog").modal("show");
 		  });
 		});
 		// filter click
