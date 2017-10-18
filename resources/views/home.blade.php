@@ -202,7 +202,7 @@
 			<h4 class="modal-title"></h4>
 		  </div>
 		  <div class="modal-body">
-			<div id='model-map' style='width:100%;height:400px'></div>
+			<div id='model-map'></div>
 		  </div>		  
 		</div>
 
@@ -219,6 +219,7 @@
     <script src="{{url('public/jquery/buttons.colVis.min.js')}}"></script>
     <script src="{{url('public/jquery/buttons.print.min.js')}}"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$google_api}}&callback=initMap"></script>
+
     <script>
 		//  show loading
 		function my_submit(){
@@ -230,28 +231,14 @@
 		
 		// bootstrap model
 		$(function(){
-		  $(".open-model").click(function(){ 
-		     renderMap($(this).data('co1'),$(this).data('co2'));
-			 $('.modal-title').html($(this).data('id'));
-			 $("#myModal").modal("show");		 
+		  $(".open-model").click(function(){      
+			 $("#myModal").modal("show");
+			 $('.modal-title').html($(this).data('id'));	
+			 var x= $(this).data('co1');
+			 var y= $(this).data('co2');
+			 $('#model-map').html('<iframe width="100%" height="400" id="gmap_canvas" src="https://maps.google.com/maps?q='+x+','+y+'&z=5&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>');	
 		  });
 		});
-		
-
-		function renderMap(x,y){
-			var mapOptions = {
-				center: new google.maps.LatLng(39.849331, -101.038396),
-				zoom: 5,
-				mapTypeId: 'terrain'
-			};
-			var map = new google.maps.Map(document.getElementById("model-map"),
-			  mapOptions);
-			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(x, y)
-			});
-			marker.setMap(map);
-		}
-
 		// filter click
 		$('.filter').on('click', function () {
 			$('#type').val($(this).attr('id'));
@@ -286,7 +273,7 @@
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 5,
                 mapTypeId: 'terrain'
-            });			
+            });					
             // Create a <script> tag and set the USGS URL as the source.
             var script = document.createElement('script');
             // This example uses a local copy of the GeoJSON stored at  // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
@@ -301,7 +288,7 @@
                     position: latLng,
                     map: map
                 });
-           @endforeach
+           @endforeach		   
         }
 		// tabs on change google map activation
         $('.nav-tabs').on('shown.bs.tab', function () {
