@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="{{url('/public/img/apple-touch-icon.png')}}">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url('/public/jquery/bootstrap.min.css')}}" >
 
     <!-- font-awesome -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" >
@@ -32,20 +32,9 @@
     <link rel="stylesheet" href="{{url('/public/css/custom.css')}}" >
 
     @yield('head')
-	
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 
 </head>
 <body>
-<script>
-$(window).load(function() {
-		// Animate loader off screen
-		$(".se-pre-con").fadeOut();
-});
-</script>
-<div class="se-pre-con"></div>
 
     @if(Auth::check())
         <nav class="navbar navbar-default  navbar-fixed-top">
@@ -102,15 +91,17 @@ $(window).load(function() {
     <div class="container-fluid main-container ">
         <footer class="footer navbar-fixed-bottom">
             <div class="col-md-12 text-center">
-            Copyright &COPY; by 2017 <a target="_blank" href="http://www.pingpong-labs.com">MegaProgramming</a>, All Rights Reserved
+            Copyright &COPY; by 2017 <a target="_blank" href="//megaprogramming.com">MegaProgramming</a>, All Rights Reserved
             </div>
 			<br>
         </footer>
     </div>
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{url('/public/jquery/jquery.min.js')}}"></script>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{url('/public/jquery/bootstrap.min.js')}}"></script>
 
     <!-- Custom js-->
     <script href="{{url('/public/js/custom.js')}}" ></script>

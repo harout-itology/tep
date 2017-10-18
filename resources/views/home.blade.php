@@ -4,11 +4,10 @@
     <style>
         body{
             background-image: none;
-			overflow: hidden;
         }  		
     </style>
-	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" >
-	<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.4.2/css/buttons.dataTables.min.css" >
+	<link rel="stylesheet" href="{{url('public/jquery/dataTables.min.css')}}" >
+	<link rel="stylesheet" href="{{url('public/jquery/buttons.dataTables.min.css')}}" >
 @endsection
 
 @section('content')
@@ -27,10 +26,10 @@
 							<input class="" type='text' placeholder='Latitude' name='' >
 							<input class="" type='text' placeholder='Longitude' name='' >							
 							<input class="" type='text' placeholder='Radius Mi' name='' >
-							<select class="" name='towerowner'>
-								<option value=''>All Owners</option>
+							<select class="" name='towerowner[]'  >
+								<option value='all'>All Owners</option>
 								@foreach($towerowner as $item)
-									<option {{$r_towerowner==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+									<option {{$r_towerowner[0]==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
 								@endforeach
 							</select>
 							<button class="" type='submit'>Search</button>
@@ -72,6 +71,10 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+								<div class='col-md-6' style='padding:10px 0'>Showing {{($towers->currentpage()-1)*$towers->perpage()+1}} to {{$towers->currentpage()*$towers->perpage()}}
+									of  {{$towers->total()}} Entries
+								</div>
+								<div class='col-md-6' ><div class='pull-right' >{{ $towers->appends(request()->input())->links() }}</div></div>
                             </div>
                             <div id="menu2" class="tab-pane fade">
                                 <div id="map"></div>
@@ -81,8 +84,9 @@
                 </div>            
 			</div>
 			
-			<div class="col-md-2 menu-close-bar">	
-			    <div class="panel-group pre-scrollable" id="accordion" style='min-height:530px'>						
+			<div class="col-md-2 menu-close-bar mobile">
+				<form  method='get' action='' id="form_filter">
+				<div class="panel-group pre-scrollable" id="accordion" style='min-height:500px'>
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h4 class="panel-title">
@@ -99,20 +103,18 @@
 					  </div>
 					  <div id="collapse1" class="panel-collapse collapse in">
 						<div class="panel-body">
-							<form id='f-city' method='get' action=''>	
 								<ul class="list-group list-unstyled">   
 									<li >
 										@foreach($city as $item)
 											@if($item)
 												<div class="checkbox checkbox-primary">
-													<input class='city_filter' id="city_{{$item}}" checked type="checkbox" value="{{$item}}" >
+													<input class='filter' id="city_{{$item}}" name="city[]" {{ isset($r_city) ? in_array($item,$r_city) ? 'checked' : '' : 'checked' }} type="checkbox" value="{{$item}}" >
 													<label for="city_{{$item}}">{{$item}}</label>
 												</div>
 											@endif
 										@endforeach
 									</li>                                							
 								</ul>
-							</form>
 						</div>
 					  </div>
 					</div>					
@@ -124,18 +126,16 @@
 					  </div>
 					  <div id="collapse2" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form id='f-country' method='get' action=''>	
 								<ul class="list-group list-unstyled">   
 									<li >
 										@foreach($country as $item)
 											<div class="checkbox checkbox-primary">
-												<input class='country_filter'  checked id="country_{{$item}}" type="checkbox" value="{{$item}}" >
+												<input class='filter'  checked id="country_{{$item}}" name="country[]" type="checkbox" value="{{$item}}" >
 												<label for="country_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
 									</li>                                							
 								</ul>
-							</form>
 						</div>
 					  </div>
 					</div>					
@@ -147,18 +147,16 @@
 					  </div>
 					  <div id="collapse3" class="panel-collapse collapse">
 						<div class="panel-body">
-						<form id='f-state' method='get' action=''>	
 								<ul class="list-group list-unstyled">   
 									<li >
 										@foreach($state as $item)
 											<div class="checkbox checkbox-primary">
-												<input class='state_filter'  checked id="state_{{$item}}" type="checkbox" value="{{$item}}" >
+												<input class='filter'  checked id="state_{{$item}}" name="state[]" type="checkbox" value="{{$item}}" >
 												<label for="state_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
 									</li>                                							
 								</ul>
-							</form>
 						</div>
 					  </div>
 					</div>					
@@ -170,49 +168,23 @@
 					  </div>
 					  <div id="collapse4" class="panel-collapse collapse">
 						<div class="panel-body">
-							<form id='f_infication' method='get' action=''>	
 								<ul class="list-group list-unstyled">   
 									<li >
 										@foreach($infication as $item)
 											@if($item)
 												<div class="checkbox checkbox-primary">
-													<input class='infication_filter'  checked id="infication_{{$item}}" type="checkbox" value="{{$item}}" >
+													<input class='filter'  checked id="infication_{{$item}}" name="infication[]" type="checkbox" value="{{$item}}" >
 													<label for="infication_{{$item}}">{{$item}}</label>
 												</div>
 											@endif
 										@endforeach
 									</li>                                							
 								</ul>
-							</form>
 						</div>
 					  </div>
 					</div>					
-					<div class="panel panel-default">
-					  <div class="panel-heading">
-						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Tower Owner</a>
-						</h4>
-					  </div>
-					  <div id="collapse5" class="panel-collapse collapse">
-						<div class="panel-body">
-							<form id='f_towerowner' method='get' action=''>	
-								<ul class="list-group list-unstyled">   
-									<li >
-										@foreach($towerowner as $item)
-											@if($item)
-												<div class="checkbox checkbox-primary">
-													<input class='owner_filter' checked id="owner_{{$item}}" type="checkbox" value="{{$item}}" >
-													<label for="owner_{{$item}}">{{$item}}</label>
-												</div>
-											@endif
-										@endforeach
-									</li>                                							
-								</ul>
-							</form>
-						</div>
-					  </div>				  
-				    </div>					
-			    </div>					
+				</div>
+				</form>
 			</div>
 			
         </div>
@@ -220,18 +192,18 @@
 @endsection
 
 @section('foot')
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.4.2/js/dataTables.buttons.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.colVis.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.flash.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.html5.min.js"></script>
-    <script src="//cdn.datatables.net/buttons/1.4.2/js/buttons.print.min.js"></script>
+    <script src="{{url('public/jquery/dataTables.min.js')}}"></script>
+    <script src="{{url('public/jquery/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{url('public/jquery/dataTables.buttons.min.js')}}"></script>
+    <script src="{{url('public/jquery/buttons.colVis.min.js')}}"></script>
+    <script src="{{url('public/jquery/buttons.print.min.js')}}"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$google_api}}&callback=initMap"></script>
     <script>
+		// filter click
+		$('.filter').on('click', function () {
+			$('body').css("pointer-events","none");
+
+		});
 		// close the right
 		$('.menu-close').on('click', function () {
 			$('.menu-open').show();
@@ -248,62 +220,12 @@
         });	
 		// data table        
         var table = $('#example').dataTable( {	
-			 "scrollY":        "300px",
-            dom: '<"top"lBf>rt<"bottom"ip>',
+			 "scrollY":        "290px",
+            dom: '<"top"Bf>rt<"bottom">',
             "scrollX": true,
-            buttons: [ 'colvis', 'csv', 'pdf', 'print' ]               
+            buttons: [ 'colvis', 'print' ]
         });		
-        $('.dt-button').addClass('btn btn-default').removeClass('dt-button'); 	
-		// filter city
-		$('.city_filter').on('click', function () {
-			var values = [];
-			$('.city_filter').each(function() {
-				if($(this).is(':checked'))
-					values.push('^'+$(this).val()+'$');
-			});
-			var choosedString = values.join("|");
-			table.fnFilter(choosedString,3,true,false);			
-        });
-		// filter country
-		$('.country_filter').on('click', function () {
-			var values = [];
-			$('.country_filter').each(function() {
-				if($(this).is(':checked'))
-					values.push('^'+$(this).val()+'$');
-			});
-			var choosedString = values.join("|");
-			table.fnFilter(choosedString,4,true,false);			
-        });
-		// filter state
-		$('.state_filter').on('click', function () {
-			var values = [];
-			$('.state_filter').each(function() {
-				if($(this).is(':checked'))
-					values.push('^'+$(this).val()+'$');
-			});
-			var choosedString = values.join("|");
-			table.fnFilter(choosedString,5,true,false);			
-        });
-		// filter infication
-		$('.infication_filter').on('click', function () {
-			var values = [];
-			$('.infication_filter').each(function() {
-				if($(this).is(':checked'))
-					values.push('^'+$(this).val()+'$');
-			});
-			var choosedString = values.join("|");
-			table.fnFilter(choosedString,7,true,false);			
-        });
-		// filter owner
-		$('.owner_filter').on('click', function () {
-			var values = [];
-			$('.owner_filter').each(function() {
-				if($(this).is(':checked'))
-					values.push('^'+$(this).val()+'$');
-			});
-			var choosedString = values.join("|");
-			table.fnFilter(choosedString,8,true,false);			
-        });
+        $('.dt-button').addClass('btn btn-default').removeClass('dt-button');
 		// google map
         var map;
         function initMap() {

@@ -33,15 +33,33 @@ class TowerController extends Controller
 		$city = Tower::groupBy('city')->pluck('city')->toArray();
 		$infication = Tower::groupBy('infication')->pluck('infication')->toArray();
 
-		$request->towerowner ? $r_towerowner = [$request->towerowner] : $r_towerowner = $towerowner;		
-		$towers = Tower::whereIn('towerowner',$r_towerowner)->limit(10000)->get();		
+		if(isset($request->towerowner)){
+			if($request->towerowner[0]=='all')
+				$r_towerowner = $towerowner;
+			else
+				$r_towerowner = $request->towerowner;
+		}
+		else
+			$r_towerowner = $towerowner;
+
+		if(isset($request->city)){
+			$r_city = $request->city;
+		}
+		else
+			$r_city = $city;
+
+
+		$towers = Tower::
+			whereIn('towerowner',$r_towerowner)->
+			whereIn('city',$r_city)->
+		paginate(10);
 
         return view('home',[
 							'towers'=>$towers,
-							'towerowner'=>$towerowner,'r_towerowner'=>$request->towerowner,							
+							'towerowner'=>$towerowner,'r_towerowner'=>$request->towerowner,
 							'country'=>$country,
 							'state'=>$state,
-							'city'=>$city,							
+							'city'=>$city,'r_city'=>$request->city,
 							'infication'=>$infication,
 							'google_api'=>Config::get('google.setDeveloperKey')
 							]);
