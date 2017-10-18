@@ -58,7 +58,7 @@
                                     <tbody>
                                     @foreach($towers as $item)
                                     <tr>
-                                        <td><i data-id="{{$item->towerid}}" class="btn fa fa-map-marker " aria-hidden="true" data-toggle="modal" data-target="#myModal" ></i> <a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
+                                        <td><i data-id="{{$item->towerid}}" data-co1="{{$item->latitude}}" data-co2="{{$item->longitude}}"  class="btn fa fa-map-marker open-model" aria-hidden="true"  ></i> <a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
                                         <td>{{$item->sitename}}</td>
                                         <td>{{$item->address}}</td>
                                         <td>{{$item->city}}</td>
@@ -199,10 +199,10 @@
 		<div class="modal-content">
 		  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
-			<h4 class="modal-title">Modal Header</h4>
+			<h4 class="modal-title"></h4>
 		  </div>
 		  <div class="modal-body">
-			<iframe src="http://maps.google.com/maps?q=35.856737, 10.606619&z=15&output=embed" width="100%" height="400" frameborder="0" style="border:0"></iframe>
+			<div id='model-map' style='width:100%;height:400px'></div>
 		  </div>		  
 		</div>
 
@@ -227,13 +227,31 @@
 		$('.pagination li').on('click', function () {
 			$(".se-pre-con").fadeIn();	
 		});
+		
 		// bootstrap model
 		$(function(){
-		  $(".open-AddBookDialog").click(function(){
-			 $('#bookId').val($(this).data('id'));
-			 $("#addBookDialog").modal("show");
+		  $(".open-model").click(function(){ 
+		     renderMap($(this).data('co1'),$(this).data('co2'));
+			 $('.modal-title').html($(this).data('id'));
+			 $("#myModal").modal("show");		 
 		  });
 		});
+		
+
+		function renderMap(x,y){
+			var mapOptions = {
+				center: new google.maps.LatLng(39.849331, -101.038396),
+				zoom: 5,
+				mapTypeId: 'terrain'
+			};
+			var map = new google.maps.Map(document.getElementById("model-map"),
+			  mapOptions);
+			var marker = new google.maps.Marker({
+				position: new google.maps.LatLng(x, y)
+			});
+			marker.setMap(map);
+		}
+
 		// filter click
 		$('.filter').on('click', function () {
 			$('#type').val($(this).attr('id'));
@@ -268,7 +286,7 @@
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 5,
                 mapTypeId: 'terrain'
-            });
+            });			
             // Create a <script> tag and set the USGS URL as the source.
             var script = document.createElement('script');
             // This example uses a local copy of the GeoJSON stored at  // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
