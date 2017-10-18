@@ -32,9 +32,26 @@
     <link rel="stylesheet" href="{{url('/public/css/custom.css')}}" >
 
     @yield('head')
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{url('/public/jquery/jquery.min.js')}}"></script>
 
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{{url('/public/jquery/bootstrap.min.js')}}"></script>
+	
+	<!--  * Modernizr v2.8.2  -->
+	<script src="{{url('/public/jquery/modernizr.js')}}"></script>
+	
+	<script>	
+	// Animate loader off screen
+	$(window).load(function() {		
+		$(".se-pre-con").fadeOut();
+	});
+	</script>
+	
 </head>
 <body>
+<div class="se-pre-con"></div>
 
     @if(Auth::check())
         <nav class="navbar navbar-default  navbar-fixed-top">
@@ -96,15 +113,6 @@
 			<br>
         </footer>
     </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{url('/public/jquery/jquery.min.js')}}"></script>
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="{{url('/public/jquery/bootstrap.min.js')}}"></script>
-
-    <!-- Custom js-->
-    <script href="{{url('/public/js/custom.js')}}" ></script>
 
     @yield('foot')
 	

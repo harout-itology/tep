@@ -47,20 +47,39 @@ class TowerController extends Controller
 		}
 		else
 			$r_city = $city;
+		if(isset($request->country)){
+			$r_country = $request->country;
+		}
+		else
+			$r_country = $country;
+		if(isset($request->state)){
+			$r_state = $request->state;
+		}
+		else
+			$r_state = $state;
+		if(isset($request->infication)){
+			$r_infication = $request->infication;
+		}
+		else
+			$r_infication = $infication;
 
+		$type= explode('_',$request->type)[0];
 
 		$towers = Tower::
 			whereIn('towerowner',$r_towerowner)->
 			whereIn('city',$r_city)->
+			whereIn('country',$r_country)->
+			whereIn('state',$r_state)->
+			whereIn('infication',$r_infication)->
 		paginate(10);
 
         return view('home',[
-							'towers'=>$towers,
+							'towers'=>$towers,'type'=>$type,
 							'towerowner'=>$towerowner,'r_towerowner'=>$request->towerowner,
-							'country'=>$country,
-							'state'=>$state,
+							'country'=>$country,'r_country'=>$request->country,
+							'state'=>$state,'r_state'=>$request->state,
 							'city'=>$city,'r_city'=>$request->city,
-							'infication'=>$infication,
+							'infication'=>$infication,'r_infication'=>$request->infication,
 							'google_api'=>Config::get('google.setDeveloperKey')
 							]);
     }

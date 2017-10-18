@@ -59,9 +59,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="state" class="col-md-2 control-label">State</label>
+                                <label for="state" class="col-md-2 control-label">State *</label>
                                 <div class="col-md-10">
-								<select id="state" class="form-control"  name="state" >
+								<select id="state" class="form-control"  name="state" required >
 									<option value=''>Select</option>
 									@foreach($states as $key => $value)
 										<option  @if(old('state') == $key) {{'selected'}} @elseif(@$tower->state == $key) {{'selected'}} @endif value='{{$key}}'>{{$value}}</option>
@@ -70,9 +70,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="city" class="col-md-2 control-label">City</label>
+                                <label for="city" class="col-md-2 control-label">City *</label>
                                 <div class="col-md-10">
-                                    <input id="city" type="text" class="form-control" name="city" value="{{ old('city') ? old('city')  :  @$tower->city }}" >                                    
+                                    <input id="city" type="text" class="form-control" name="city" value="{{ old('city') ? old('city')  :  @$tower->city }}" required >                                    
                                 </div>
                             </div>
 							<div class="form-group">
@@ -106,9 +106,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="infication" class="col-md-2 control-label">Infication</label>
+                                <label for="infication" class="col-md-2 control-label">Infication *</label>
                                 <div class="col-md-10">
-                                    <input id="infication" type="text" class="form-control" name="infication" value="{{ old('infication') ? old('infication')  :  @$tower->infication }}" >                                    
+                                    <input id="infication" type="text" class="form-control" name="infication" value="{{ old('infication') ? old('infication')  :  @$tower->infication }}" required >                                    
                                 </div>
                             </div>							
 							<div class="form-group">

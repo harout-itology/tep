@@ -58,7 +58,7 @@
                                     <tbody>
                                     @foreach($towers as $item)
                                     <tr>
-                                        <td><a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
+                                        <td><i data-id="{{$item->towerid}}" class="btn fa fa-map-marker " aria-hidden="true" data-toggle="modal" data-target="#myModal" ></i> <a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
                                         <td>{{$item->sitename}}</td>
                                         <td>{{$item->address}}</td>
                                         <td>{{$item->city}}</td>
@@ -86,6 +86,7 @@
 			
 			<div class="col-md-2 menu-close-bar mobile">
 				<form  method='get' action='' id="form_filter">
+				<input type='hidden' name='type' id='type' >
 				<div class="panel-group pre-scrollable" id="accordion" style='min-height:500px'>
 					<div class="panel panel-default">
 						<div class="panel-heading">
@@ -101,7 +102,7 @@
 						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">City</a>
 						</h4>
 					  </div>
-					  <div id="collapse1" class="panel-collapse collapse in">
+					  <div id="collapse1" class="panel-collapse collapse {{ $type=='city' || $type=='' ? 'in' : '' }}    ">
 						<div class="panel-body">
 								<ul class="list-group list-unstyled">   
 									<li >
@@ -124,13 +125,13 @@
 						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Country</a>
 						</h4>
 					  </div>
-					  <div id="collapse2" class="panel-collapse collapse">
+					  <div id="collapse2" class="panel-collapse collapse {{ $type=='country' ? 'in' : '' }}">
 						<div class="panel-body">
 								<ul class="list-group list-unstyled">   
 									<li >
 										@foreach($country as $item)
 											<div class="checkbox checkbox-primary">
-												<input class='filter'  checked id="country_{{$item}}" name="country[]" type="checkbox" value="{{$item}}" >
+												<input class='filter'  id="country_{{$item}}" name="country[]" {{ isset($r_country) ? in_array($item,$r_country) ? 'checked' : '' : 'checked' }}  type="checkbox" value="{{$item}}" >
 												<label for="country_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
@@ -145,13 +146,13 @@
 						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">State</a>
 						</h4>
 					  </div>
-					  <div id="collapse3" class="panel-collapse collapse">
+					  <div id="collapse3" class="panel-collapse collapse {{ $type=='state' ? 'in' : '' }}">
 						<div class="panel-body">
 								<ul class="list-group list-unstyled">   
 									<li >
 										@foreach($state as $item)
 											<div class="checkbox checkbox-primary">
-												<input class='filter'  checked id="state_{{$item}}" name="state[]" type="checkbox" value="{{$item}}" >
+												<input class='filter'  id="state_{{$item}}" name="state[]" {{ isset($r_state) ? in_array($item,$r_state) ? 'checked' : '' : 'checked' }} type="checkbox" value="{{$item}}" >
 												<label for="state_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
@@ -166,14 +167,14 @@
 						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Infication</a>
 						</h4>
 					  </div>
-					  <div id="collapse4" class="panel-collapse collapse">
+					  <div id="collapse4" class="panel-collapse collapse {{ $type=='infication' ? 'in' : '' }}">
 						<div class="panel-body">
 								<ul class="list-group list-unstyled">   
 									<li >
 										@foreach($infication as $item)
 											@if($item)
 												<div class="checkbox checkbox-primary">
-													<input class='filter'  checked id="infication_{{$item}}" name="infication[]" type="checkbox" value="{{$item}}" >
+													<input class='filter' id="infication_{{$item}}" name="infication[]" type="checkbox" {{ isset($r_infication) ? in_array($item,$r_infication) ? 'checked' : '' : 'checked' }} value="{{$item}}" >
 													<label for="infication_{{$item}}">{{$item}}</label>
 												</div>
 											@endif
@@ -189,6 +190,26 @@
 			
         </div>
     </div>
+	
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 class="modal-title">Modal Header</h4>
+		  </div>
+		  <div class="modal-body">
+			<iframe src="http://maps.google.com/maps?q=35.856737, 10.606619&z=15&output=embed" width="100%" height="400" frameborder="0" style="border:0"></iframe>
+		  </div>		  
+		</div>
+
+	  </div>
+	</div>
+
+
 @endsection
 
 @section('foot')
@@ -199,10 +220,18 @@
     <script src="{{url('public/jquery/buttons.print.min.js')}}"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$google_api}}&callback=initMap"></script>
     <script>
+		// bootstrap model
+		$(function(){
+		  $(".open-AddBookDialog").click(function(){
+			 $('#bookId').val($(this).data('id'));
+			$("#addBookDialog").modal("show");
+		  });
+		});
 		// filter click
 		$('.filter').on('click', function () {
-			$('body').css("pointer-events","none");
-
+			$('#type').val($(this).attr('id'));
+			$(".se-pre-con").fadeIn();
+			$('#form_filter').submit();
 		});
 		// close the right
 		$('.menu-close').on('click', function () {
