@@ -66,8 +66,8 @@ class TowerController extends Controller
 
 		$type= explode('_',$request->type)[0];
 
-		$request->longitude ? $longitude = $request->longitude :  $longitude = 37.0903563;
-		$request->latitude ? $latitude = $request->latitude : $latitude = -95.7829316  ;
+		$request->latitude ? $latitude = $request->latitude : $latitude =   37.0903563 ;
+		$request->longitude ? $longitude = $request->longitude :  $longitude = -95.7829316;
 		$request->radius ? $distance = $request->radius : $distance =  10000  ;
 
 		$towers = Tower::

@@ -23,9 +23,9 @@
                             </div>
                         @endif
 						<form class="search navbar navbar-default mobile" method='get' action='' onsubmit="return my_submit()">											
-							<input class="" type='text' placeholder='Latitude' name='latitude' value="{{$r_latitude}}" >
-							<input class="" type='text' placeholder='Longitude' name='longitude' value="{{$r_longitude}}" >
-							<input class="" type='text' placeholder='Radius Mi' name='radius' value="{{$r_radius}}" >
+							<input class="" type='text' placeholder='Latitude' name='latitude' value="{{$r_latitude==37.0903563 ? '' : $r_latitude }}" >
+							<input class="" type='text' placeholder='Longitude' name='longitude' value="{{$r_longitude==-95.7829316 ? '' : $r_longitude }}" >
+							<input class="" type='text' placeholder='Radius Mi' name='radius' value="{{$r_radius==10000 ? '' : $r_radius}}" >
 							<select class="" name='towerowner[]'  >
 								<option value='all'>All Owners</option>
 								@foreach($towerowner as $item)
