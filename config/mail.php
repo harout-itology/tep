@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
+    'host' => env('MAIL_HOST', 'mail.armgento.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'c65c100cde62ee',
+    'username' => 'test@armgento.com',
 
-    'password' => '27eb732da1bccb',
+    'password' => 'test@123',
 
     /*
     |--------------------------------------------------------------------------
