@@ -44,7 +44,8 @@
                                 <table id="example" class="display nowrap" cellspacing="0" width="100%">
                                     <thead>
                                     <tr>
-                                        <th>Tower ID</th>
+                                        <th>Map</th>
+										<th>Tower ID</th>
                                         <th>Site Name</th>
                                         <th>Address</th>
                                         <th>City</th>
@@ -58,7 +59,8 @@
                                     <tbody>
                                     @foreach($towers as $item)
                                     <tr>
-                                        <td><i data-id="{{$item->towerid}}" data-co1="{{$item->latitude}}" data-co2="{{$item->longitude}}"  class="btn fa fa-map-marker open-model" aria-hidden="true"  ></i> <a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
+										<td><i title=' Show Map ' data-id="{{$item->towerid}}" data-co1="{{$item->latitude}}" data-co2="{{$item->longitude}}"  class="btn fa fa-map-marker open-model" aria-hidden="true"  ></i> </td>
+										<td><a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
                                         <td>{{$item->sitename}}</td>
                                         <td>{{$item->address}}</td>
                                         <td>{{$item->city}}</td>

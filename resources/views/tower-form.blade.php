@@ -82,15 +82,15 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="latitude" class="col-md-2 control-label">Latitude</label>
+                                <label for="latitude" class="col-md-2 control-label">Latitude *</label>
                                 <div class="col-md-10">
-                                    <input id="latitude" type="text" class="form-control" name="latitude" value="{{ old('latitude') ? old('latitude')  :  @$tower->latitude }}" >                                    
+                                    <input id="latitude" type="number" class="form-control" name="latitude" value="{{ old('latitude') ? old('latitude')  :  @$tower->latitude }}" required >
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="longitude" class="col-md-2 control-label">Longitude</label>
+                                <label for="longitude" class="col-md-2 control-label">Longitude *</label>
                                 <div class="col-md-10">
-                                    <input id="longitude" type="text" class="form-control" name="longitude" value="{{ old('longitude') ? old('longitude')  :  @$tower->longitude }}" >                                    
+                                    <input id="longitude" type="number" class="form-control" name="longitude" value="{{ old('longitude') ? old('longitude')  :  @$tower->longitude }}" required >
                                 </div>
                             </div>							
 							<div class="form-group">
@@ -132,7 +132,7 @@
 							<div class="form-group">
                                 <label for="email" class="col-md-2 control-label">Email</label>
                                 <div class="col-md-10">
-                                    <input id="email" type="text" class="form-control" name="email" value="{{ old('email') ? old('email')  :  @$tower->email }}" >                                    
+                                    <input id="email" type="email" class="form-control" name="email" value="{{ old('email') ? old('email')  :  @$tower->email }}" >
                                 </div>
                             </div>							
 							<div class="form-group">
@@ -160,9 +160,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="btaname" class="col-md-2 control-label">BTA Name *</label>
+                                <label for="btaname" class="col-md-2 control-label">BTA Name </label>
                                 <div class="col-md-10">
-                                    <input id="btaname" type="text" class="form-control" name="btaname" value="{{ old('btaname') ? old('btaname') : @$tower->btaname }}" required >                                    
+                                    <input id="btaname" type="text" class="form-control" name="btaname" value="{{ old('btaname') ? old('btaname') : @$tower->btaname }}"  >
                                 </div>
                             </div>							
 							<div class="form-group">
@@ -172,9 +172,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="mtaname" class="col-md-2 control-label">MTA Name *</label>
+                                <label for="mtaname" class="col-md-2 control-label">MTA Name </label>
                                 <div class="col-md-10">
-                                    <input id="mtaname" type="text" class="form-control" name="mtaname" value="{{ old('mtaname') ? old('mtaname') : @$tower->mtaname }}" required >                                    
+                                    <input id="mtaname" type="text" class="form-control" name="mtaname" value="{{ old('mtaname') ? old('mtaname') : @$tower->mtaname }}"  >
                                 </div>
                             </div>							
 							<div class="form-group">

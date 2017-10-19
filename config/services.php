@@ -102,7 +102,8 @@ return [
 		'WY'=>'WYOMING',
 		'AE'=>'ARMED FORCES AFRICA \ CANADA \ EUROPE \ MIDDLE EAST',
 		'AA'=>'ARMED FORCES AMERICA (EXCEPT CANADA)',
-		'AP'=>'ARMED FORCES PACIFIC'
+		'AP'=>'ARMED FORCES PACIFIC',
+		'NO' => 'no State'
 	],
 	
 	'countires' => [
