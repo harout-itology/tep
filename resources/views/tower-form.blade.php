@@ -84,13 +84,13 @@
 							<div class="form-group">
                                 <label for="latitude" class="col-md-2 control-label">Latitude *</label>
                                 <div class="col-md-10">
-                                    <input id="latitude" type="number" class="form-control" name="latitude" value="{{ old('latitude') ? old('latitude')  :  @$tower->latitude }}" required >
+                                    <input id="latitude" pattern="[0-9.-]*" type="text" class="form-control" name="latitude" value="{{ old('latitude') ? old('latitude')  :  @$tower->latitude }}" required >
                                 </div>
                             </div>							
 							<div class="form-group">
                                 <label for="longitude" class="col-md-2 control-label">Longitude *</label>
                                 <div class="col-md-10">
-                                    <input id="longitude" type="number" class="form-control" name="longitude" value="{{ old('longitude') ? old('longitude')  :  @$tower->longitude }}" required >
+                                    <input id="longitude" pattern="[0-9.-]*" type="text" class="form-control" name="longitude" value="{{ old('longitude') ? old('longitude')  :  @$tower->longitude }}" required >
                                 </div>
                             </div>							
 							<div class="form-group">
