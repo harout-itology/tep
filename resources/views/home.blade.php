@@ -23,9 +23,9 @@
                             </div>
                         @endif
 						<form class="search navbar navbar-default mobile" method='get' action='' onsubmit="return my_submit()">											
-							<input class="" type='text' placeholder='Latitude' name='' >
-							<input class="" type='text' placeholder='Longitude' name='' >							
-							<input class="" type='text' placeholder='Radius Mi' name='' >
+							<input class="" type='text' placeholder='Latitude' name='latitude' value="{{$r_latitude}}" >
+							<input class="" type='text' placeholder='Longitude' name='longitude' value="{{$r_longitude}}" >
+							<input class="" type='text' placeholder='Radius Mi' name='radius' value="{{$r_radius}}" >
 							<select class="" name='towerowner[]'  >
 								<option value='all'>All Owners</option>
 								@foreach($towerowner as $item)
@@ -73,8 +73,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-								<div class='col-md-6' style='padding:10px 0'>Showing {{($towers->currentpage()-1)*$towers->perpage()+1}} to {{$towers->currentpage()*$towers->perpage()}}
-									of  {{$towers->total()}} Entries
+								<div class='col-md-6' style='padding:10px 0'>Showing   {{$towers->total()}} Entries
 								</div>
 								<div class='col-md-6' ><div class='pull-right' >{{ $towers->appends(request()->input())->links() }}</div></div>
                             </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tower;
 use Validator;
 use Config;
+use DB;
 
 class TowerController extends Controller
 {
@@ -65,12 +66,19 @@ class TowerController extends Controller
 
 		$type= explode('_',$request->type)[0];
 
+		$request->longitude ? $longitude = $request->longitude :  $longitude = 37.0903563;
+		$request->latitude ? $latitude = $request->latitude : $latitude = -95.7829316  ;
+		$request->radius ? $distance = $request->radius : $distance =  10000  ;
+
 		$towers = Tower::
 			whereIn('towerowner',$r_towerowner)->
 			whereIn('city',$r_city)->
 			whereIn('country',$r_country)->
 			whereIn('state',$r_state)->
 			whereIn('infication',$r_infication)->
+			where(function($q) use ($latitude, $longitude, $distance) {
+				$q->filterByLocationAndDistance($latitude, $longitude, $distance);
+			})->
 		paginate(10);
 
         return view('home',[
@@ -80,7 +88,8 @@ class TowerController extends Controller
 							'state'=>$state,'r_state'=>$request->state,
 							'city'=>$city,'r_city'=>$request->city,
 							'infication'=>$infication,'r_infication'=>$request->infication,
-							'google_api'=>Config::get('google.setDeveloperKey')
+							'google_api'=>Config::get('google.setDeveloperKey'),
+			                'r_radius'=>$distance, 'r_latitude'=>$latitude,'r_longitude'=>$longitude
 							]);
     }
 

@@ -23,6 +23,7 @@ class Controller extends BaseController
         $gClient->setScopes(Config::get('google.googleSetScopes'));
 
         return $gClient;
-
     }
+  
+
 }
