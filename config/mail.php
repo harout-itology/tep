@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'username' => 'wirelessinfrastructuredata@armgento.com.com',
+    'username' => 'wirelessinfrastructuredata@armgento.com',
 
     'password' => 'test@123',
 
