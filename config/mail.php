@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'test@armgento.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'wirelessinfrastructuredata@armgento.com'),
         'name' => env('MAIL_FROM_NAME', 'wirelessinfrastructuredata'),
     ],
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'TLS'),
+    'encryption' => env('MAIL_ENCRYPTION', 'SSL'),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    'username' => 'test@armgento.com',
+    'username' => 'wirelessinfrastructuredata@armgento.com',
 
     'password' => 'test@123',
 
