@@ -46,13 +46,12 @@
                                     <tr>
                                         <th>Map</th>
 										<th>Tower ID</th>
-                                        <th>Site Name</th>
-                                        <th>Address</th>
+                                        <th>Site Name</th>                                       
                                         <th>City</th>
                                         <th>Country</th>
 										<th>State</th>
                                         <th>Height</th>
-                                        <th>Infication</th>
+                                        <th>Structure Class Ification</th>
                                         <th>Owner</th>
                                     </tr>
                                     </thead>                                    
@@ -61,13 +60,12 @@
                                     <tr>
 										<td><i title=' Show Map ' data-id="{{$item->towerid}}" data-co1="{{$item->latitude}}" data-co2="{{$item->longitude}}"  class="btn fa fa-map-marker open-model" aria-hidden="true"  ></i> </td>
 										<td><a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
-                                        <td>{{$item->sitename}}</td>
-                                        <td>{{$item->address}}</td>
+                                        <td>{{$item->sitename}}</td>                                       
                                         <td>{{$item->city}}</td>
                                         <td>{{$item->country}}</td>
 										<td>{{$item->state}}</td>
                                         <td>{{$item->height}}</td>
-                                        <td>{{$item->infication}}</td>
+                                        <td>{{$item->structureclassification}}</td>
                                         <td>{{$item->towerowner}}</td>
                                     </tr>
                                     @endforeach
@@ -165,7 +163,7 @@
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
-						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Infication</a>
+						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Structure Class Ification</a>
 						</h4>
 					  </div>
 					  <div id="collapse4" class="panel-collapse collapse {{ $type=='infication' ? 'in' : '' }}">

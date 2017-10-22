@@ -106,9 +106,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="infication" class="col-md-2 control-label">Infication *</label>
+                                <label for="infication" class="col-md-2 control-label">Structure Class Ification *</label>
                                 <div class="col-md-10">
-                                    <input id="infication" type="text" class="form-control" name="infication" value="{{ old('infication') ? old('infication')  :  @$tower->infication }}" required >                                    
+                                    <input id="infication" type="text" class="form-control" name="infication" value="{{ old('infication') ? old('infication')  :  @$tower->structureclassification }}" required >                                    
                                 </div>
                             </div>							
 							<div class="form-group">

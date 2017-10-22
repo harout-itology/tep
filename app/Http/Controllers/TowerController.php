@@ -32,7 +32,7 @@ class TowerController extends Controller
 		$country = Tower::groupBy('country')->pluck('country')->toArray();	
 		$state = Tower::groupBy('state')->pluck('state')->toArray();
 		$city = Tower::groupBy('city')->pluck('city')->toArray();
-		$infication = Tower::groupBy('infication')->pluck('infication')->toArray();
+		$infication = Tower::groupBy('structureclassification')->pluck('structureclassification')->toArray();
 
 		if(isset($request->towerowner)){
 			if($request->towerowner[0]=='all')
@@ -75,7 +75,7 @@ class TowerController extends Controller
 			whereIn('city',$r_city)->
 			whereIn('country',$r_country)->
 			whereIn('state',$r_state)->
-			whereIn('infication',$r_infication)->
+			whereIn('structureclassification',$r_infication)->
 			where(function($q) use ($latitude, $longitude, $distance) {
 				$q->filterByLocationAndDistance($latitude, $longitude, $distance);
 			})->
@@ -130,7 +130,7 @@ class TowerController extends Controller
 		$tower->longitude = $request->longitude ;
 		$tower->height = $request->height ;
 		$tower->structuretype = $request->structuretype ;
-		$tower->infication = $request->infication ;
+		$tower->structureclassification = $request->infication ;
 		$tower->firstname = $request->firstname ;
 		$tower->lastname = $request->lastname ;
 		$tower->phone = $request->phone ;
@@ -204,7 +204,7 @@ class TowerController extends Controller
 		$tower->longitude = $request->longitude ;
 		$tower->height = $request->height ;
 		$tower->structuretype = $request->structuretype ;
-		$tower->infication = $request->infication ;
+		$tower->structureclassification = $request->infication ;
 		$tower->firstname = $request->firstname ;
 		$tower->lastname = $request->lastname ;
 		$tower->phone = $request->phone ;

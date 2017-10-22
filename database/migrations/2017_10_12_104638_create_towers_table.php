@@ -27,7 +27,7 @@ class CreateTowersTable extends Migration
             $table->string('longitude')->nullable();
             $table->string('height')->nullable();
             $table->string('structuretype')->nullable();
-            $table->string('infication')->nullable();
+            $table->string('structureclassification')->nullable();
             $table->string('firstname')->nullable();
             $table->string('lastname')->nullable();
             $table->string('phone')->nullable();
