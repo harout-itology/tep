@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'mail.armgento.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'wirelessinfrastructuredata@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'wirelessinfrastructuredata@armgento.com'),
         'name' => env('MAIL_FROM_NAME', 'wirelessinfrastructuredata'),
     ],
 
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'wirelessinfrastructuredata@gmail.com',
+    'username' => 'wirelessinfrastructuredata@armgento.com',
 
-    'password' => 'wireless@123',
+    'password' => 'test@123',
 
     /*
     |--------------------------------------------------------------------------
