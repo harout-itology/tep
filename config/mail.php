@@ -86,7 +86,7 @@ return [
 
     'username' => 'wirelessinfrastructuredata@gmail.com',
 
-    'password' => 'test@123',
+    'password' => 'wireless@123',
 
     /*
     |--------------------------------------------------------------------------
