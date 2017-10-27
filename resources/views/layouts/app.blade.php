@@ -17,30 +17,30 @@
     <meta name="description" content="MegaProgramming">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta property="og:image"   content="{{url('/public/img/favicon.png')}}">
-    <link rel="shortcut icon" href="{{url('/public/img/favicon.ico')}}" type="image/x-icon">
-    <link rel="icon" href="{{url('/public/img/favicon.png')}}" type="image/png">
-    <link rel="apple-touch-icon" href="{{url('/public/img/apple-touch-icon.png')}}">
+    <meta property="og:image"   content="{{url('/img/favicon.png')}}">
+    <link rel="shortcut icon" href="{{url('/img/favicon.ico')}}" type="image/x-icon">
+    <link rel="icon" href="{{url('/img/favicon.png')}}" type="image/png">
+    <link rel="apple-touch-icon" href="{{url('/img/apple-touch-icon.png')}}">
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="{{url('/public/jquery/bootstrap.min.css')}}" >
+    <link rel="stylesheet" href="{{url('/jquery/bootstrap.min.css')}}" >
 
     <!-- font-awesome -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" >
 
     <!-- Custom css-->
-    <link rel="stylesheet" href="{{url('/public/css/custom.css')}}" >
+    <link rel="stylesheet" href="{{url('/css/custom.css')}}" >
 
     @yield('head')
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{url('/public/jquery/jquery.min.js')}}"></script>
+    <script src="{{url('/jquery/jquery.min.js')}}"></script>
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="{{url('/public/jquery/bootstrap.min.js')}}"></script>
+    <script src="{{url('/jquery/bootstrap.min.js')}}"></script>
 	
 	<!--  * Modernizr v2.8.2  -->
-	<script src="{{url('/public/jquery/modernizr.js')}}"></script>
+	<script src="{{url('/jquery/modernizr.js')}}"></script>
 	
 	<script>	
 	// Animate loader off screen
@@ -66,7 +66,7 @@
                     </button>
                     <a class="navbar-brand" href="{{url('/')}}">
                         <div class="row"  >
-                            <div class="col-md-6"><img src="{{url('/public/img/logo.png')}}"  width="30"/></div>
+                            <div class="col-md-6"><img src="{{url('/img/logo.png')}}"  width="30"/></div>
                             <div class="col-md-6 mobile">{{ config('app.name', 'Laravel') }}</div>
                         </div>
                     </a>

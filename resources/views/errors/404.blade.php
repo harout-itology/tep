@@ -13,14 +13,14 @@
                         <div class="col-md-6 text-center">
                             <div class="row">
                                 <div class="col-md-12">
-									<br><img src="{{url('/public/img/logo.png')}}"  width="100"/><br><br>
+									<br><img src="{{url('img/logo.png')}}"  width="100"/><br><br>
 									<a href="{{url('/')}}">Back to Home</a>
 								</div>                                
                             </div>
                         </div>
 						<div class="col-md-6 text-center">
                             <div class="row">
-                                <div class="col-md-12"><img src="{{url('/public/img/404.png')}}"  width="250"/></div>                                
+                                <div class="col-md-12"><img src="{{url('/img/404.png')}}"  width="250"/></div>
                             </div>
                         </div>            
                     </div>

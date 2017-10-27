@@ -6,23 +6,23 @@
             background-image: none;
         }  		
     </style>
-	<link rel="stylesheet" href="{{url('public/jquery/dataTables.min.css')}}" >
-	<link rel="stylesheet" href="{{url('public/jquery/buttons.dataTables.min.css')}}" >
+	<link rel="stylesheet" href="{{url('jquery/dataTables.min.css')}}" >
+	<link rel="stylesheet" href="{{url('jquery/buttons.dataTables.min.css')}}" >
 @endsection
 
 @section('content')
     <div class="container" style="width: 100%">
         <div class="row  ">
-		
-            <div class="col-md-10 main-bar">						
+
+            <div class="col-md-10 main-bar">
                 <div id="main" class="panel panel-default">
-                    <div class="panel-body">											
+                    <div class="panel-body">
 						@if( session('message'))
                             <div class="alert alert-success">
                                 {{ session('message') }}
                             </div>
                         @endif
-						<form class="search navbar navbar-default mobile" method='get' action='' onsubmit="return my_submit()">											
+						<form class="search navbar navbar-default mobile" method='get' action='' onsubmit="return my_submit()">
 							<input class="" type='text' placeholder='Latitude' name='latitude' value="{{$r_latitude==41.949101 ? '' : $r_latitude }}" >
 							<input class="" type='text' placeholder='Longitude' name='longitude' value="{{$r_longitude==-101.148345 ? '' : $r_longitude }}" >
 							<input class="" type='text' placeholder='Radius Mi' name='radius' value="{{$r_radius==10000 ? '' : $r_radius}}" >
@@ -34,7 +34,7 @@
 							</select>
 							<button class="submit" type='submit'>Search</button>
 							<i class="btn btn-primary menu-open fa fa-arrow-left" aria-hidden="true" style='display:none'></i>
-						</form>						
+						</form>
 						<ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#menu1"><i class="fa fa-bars" aria-hidden="true"></i> &nbsp;  List View</a></li>
                             <li><a data-toggle="tab" href="#menu2"><i class="fa fa-map-marker" aria-hidden="true"></i> &nbsp; Map View</a></li>
@@ -46,7 +46,7 @@
                                     <tr>
                                         <th>Map</th>
 										<th>Tower ID</th>
-                                        <th>Site Name</th>                                       
+                                        <th>Site Name</th>
                                         <th>City</th>
                                         <th>Country</th>
 										<th>State</th>
@@ -54,13 +54,13 @@
                                         <th>Structure Class Ification</th>
                                         <th>Owner</th>
                                     </tr>
-                                    </thead>                                    
+                                    </thead>
                                     <tbody>
                                     @foreach($towers as $item)
                                     <tr>
 										<td><i title=' Show Map ' data-id="{{$item->towerid}}" data-co1="{{$item->latitude}}" data-co2="{{$item->longitude}}"  class="btn fa fa-map-marker open-model" aria-hidden="true"  ></i> </td>
 										<td><a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
-                                        <td>{{$item->sitename}}</td>                                       
+                                        <td>{{$item->sitename}}</td>
                                         <td>{{$item->city}}</td>
                                         <td>{{$item->country}}</td>
 										<td>{{$item->state}}</td>
@@ -78,11 +78,11 @@
                             <div id="menu2" class="tab-pane fade">
                                 <div id="map"></div>
                             </div>
-                        </div>						
+                        </div>
 					</div>
-                </div>            
+                </div>
 			</div>
-			
+
 			<div class="col-md-2 menu-close-bar mobile">
 				<form  method='get' action='' id="form_filter">
 				<input type='hidden' name='type' id='type' >
@@ -94,7 +94,7 @@
 							  <b>Filters List</b>
 							</h4>
 					    </div>
-					</div>						
+					</div>
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
@@ -103,7 +103,7 @@
 					  </div>
 					  <div id="collapse1" class="panel-collapse collapse {{ $type=='city' || $type=='' ? 'in' : '' }}    ">
 						<div class="panel-body">
-								<ul class="list-group list-unstyled">   
+								<ul class="list-group list-unstyled">
 									<li >
 										@foreach($city as $item)
 											@if($item)
@@ -113,11 +113,11 @@
 												</div>
 											@endif
 										@endforeach
-									</li>                                							
+									</li>
 								</ul>
 						</div>
 					  </div>
-					</div>					
+					</div>
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
@@ -126,7 +126,7 @@
 					  </div>
 					  <div id="collapse2" class="panel-collapse collapse {{ $type=='country' ? 'in' : '' }}">
 						<div class="panel-body">
-								<ul class="list-group list-unstyled">   
+								<ul class="list-group list-unstyled">
 									<li >
 										@foreach($country as $item)
 											<div class="checkbox checkbox-primary">
@@ -134,11 +134,11 @@
 												<label for="country_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
-									</li>                                							
+									</li>
 								</ul>
 						</div>
 					  </div>
-					</div>					
+					</div>
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
@@ -147,7 +147,7 @@
 					  </div>
 					  <div id="collapse3" class="panel-collapse collapse {{ $type=='state' ? 'in' : '' }}">
 						<div class="panel-body">
-								<ul class="list-group list-unstyled">   
+								<ul class="list-group list-unstyled">
 									<li >
 										@foreach($state as $item)
 											<div class="checkbox checkbox-primary">
@@ -155,11 +155,11 @@
 												<label for="state_{{$item}}">{{$item}}</label>
 											</div>
 										@endforeach
-									</li>                                							
+									</li>
 								</ul>
 						</div>
 					  </div>
-					</div>					
+					</div>
 					<div class="panel panel-default">
 					  <div class="panel-heading">
 						<h4 class="panel-title">
@@ -168,7 +168,7 @@
 					  </div>
 					  <div id="collapse4" class="panel-collapse collapse {{ $type=='infication' ? 'in' : '' }}">
 						<div class="panel-body">
-								<ul class="list-group list-unstyled">   
+								<ul class="list-group list-unstyled">
 									<li >
 										@foreach($infication as $item)
 											@if($item)
@@ -178,18 +178,18 @@
 												</div>
 											@endif
 										@endforeach
-									</li>                                							
+									</li>
 								</ul>
 						</div>
 					  </div>
-					</div>					
+					</div>
 				</div>
 				</form>
 			</div>
-			
+
         </div>
     </div>
-	
+
 	<!-- Modal -->
 	<div id="myModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
@@ -202,7 +202,7 @@
 		  </div>
 		  <div class="modal-body">
 			<div id='model-map'></div>
-		  </div>		  
+		  </div>
 		</div>
 
 	  </div>
@@ -212,11 +212,11 @@
 @endsection
 
 @section('foot')
-    <script src="{{url('public/jquery/dataTables.min.js')}}"></script>
-    <script src="{{url('public/jquery/dataTables.bootstrap.min.js')}}"></script>
-    <script src="{{url('public/jquery/dataTables.buttons.min.js')}}"></script>
-    <script src="{{url('public/jquery/buttons.colVis.min.js')}}"></script>
-    <script src="{{url('public/jquery/buttons.print.min.js')}}"></script>
+    <script src="{{url('jquery/dataTables.min.js')}}"></script>
+    <script src="{{url('jquery/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{url('jquery/dataTables.buttons.min.js')}}"></script>
+    <script src="{{url('jquery/buttons.colVis.min.js')}}"></script>
+    <script src="{{url('jquery/buttons.print.min.js')}}"></script>
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{$google_api}}&callback=initMap"></script>
 
     <script>
