@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://wirelessinfrastructuredata.com'),
+    'url' => env('APP_URL', 'http://tep.megaprogramming.de/'),
 
     /*
     |--------------------------------------------------------------------------
