@@ -19,7 +19,7 @@
                                     <a  href="{{$google}}" class="btn btn-primary"> <i class="fa fa-google-plus"></i> &nbsp; Sign in  </a>
                                 </div>
                                 <div class="col-md-6">
-                                    <a  href="{{$linkedin}}" class="btn btn-primary"> <i class="fa fa-linkedin"></i> &nbsp; Sign in </a>
+                                    <a  href="{{$socialite}}/github" class="btn btn-primary"> <i class="fa fa-github"></i> &nbsp; Sign in </a>
                                 </div>
                                 <br>
                             </div>

@@ -4,10 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Services\GoogleService;
 use Illuminate\Http\Request;
 use App\User;
-use Auth;
-use Socialite;
+use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
@@ -29,16 +30,18 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    private $redirectTo = '/';
+    private $googleService;
 
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param GoogleService $googleService
      */
-    public function __construct()
+    public function __construct(GoogleService $googleService)
     {
         $this->middleware('guest')->except('logout');
+        $this->googleService = $googleService;
     }
 
     /**
@@ -48,74 +51,31 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        $authUrl = parent::googleconfig();
-        $google = $authUrl->createAuthUrl();
-
-        $linkedin = url('/linkedin-url');
-
-        return view('auth.login',['google'=>$google,'linkedin'=>$linkedin]);
+        $google = $this->googleService->getConfig()->createAuthUrl();
+        $socialite = route('socialite.url');
+        return view('auth.login',['google'=>$google, 'socialite'=>$socialite]);
     }
 
     public function google(Request $request)
     {
-
-        $gClient = parent::googleconfig();
-
-        $google_oauthV2 = new \Google_Service_Oauth2($gClient);
-        if ($request->get('code')) {
-            $gClient->authenticate($request->get('code'));
-            $request->session()->put('token', $gClient->getAccessToken());
-        }
-        if ($request->session()->get('token')) {
-            $gClient->setAccessToken($request->session()->get('token'));
-        }
-        if ($gClient->getAccessToken()) {
-            //For logged in user, get details from google using access token
-            $guser = $google_oauthV2->userinfo->get();
-
-            $user = User::where('email',$guser['email'])->first();
-
-            if(!isset($user->email)){
-                $user = new User();
-                $user->email = $guser['email'];
-                $user->name = $guser['name'];
-                $password = str_random(8);
-                $user->password =  $password;
-                $user->save();
-            }
-			Auth::login($user);
-            return redirect('/');
-        }
-		return abort(404);
+        return $this->googleService->login($request) ? redirect('/') : abort(404);
     }
 
-    public function linkedin_URL()
+    public function socialiteurl($slug)
     {
-        return  Socialite::driver('linkedin')->redirect();
-
+        return  Socialite::driver($slug)->stateless()->redirect();
     }
 
-    public function linkedin()
+    public function socialite($slug)
     {
         try {
-            $guser = Socialite::driver('linkedin')->user();
-            $user = User::where('email',$guser->email)->first();
-            if(!isset($user->email)){
-                $user = new User();
-                $user->email = $guser->email;
-                $user->name = $guser->name;
-                $password = str_random(8);
-                $user->password =  $password;
-                $user->save();
-            }
+            $guser = Socialite::driver($slug)->stateless()->user();
+            $user = User::submit($guser, $guser->id);
             Auth::login($user);
             return redirect('/');
-
         } catch (Exception $e) {
             return abort(404);
         }
-
     }
-
 
 }

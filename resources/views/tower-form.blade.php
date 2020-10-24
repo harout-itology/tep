@@ -16,9 +16,19 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-body">
+
+                        @if( count($errors) )
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         
                         <h2> Tower Details</h2>
-                        <form class="form-horizontal" method="POST" action="{{ @$tower->towerid ? url('/tower/'.$tower->id) : url('/tower') }}">
+                        <form class="form-horizontal" method="POST" action="{{ @$tower->towerid ? route('tower.update', $tower->id) : route('tower.store') }}">
                             {{ csrf_field() }}
 							@if(@$tower->towerid)
 								{{ method_field('PUT') }}
@@ -106,9 +116,9 @@
                                 </div>
                             </div>							
 							<div class="form-group">
-                                <label for="infication" class="col-md-2 control-label">Structure Class Ification *</label>
+                                <label for="structureclassification" class="col-md-2 control-label">Structure Class Ification *</label>
                                 <div class="col-md-10">
-                                    <input id="infication" type="text" class="form-control" name="infication" value="{{ old('infication') ? old('infication')  :  @$tower->structureclassification }}" required >                                    
+                                    <input id="structureclassification" type="text" class="form-control" name="structureclassification" value="{{ old('structureclassification') ? old('structureclassification')  :  @$tower->structureclassification }}" required >
                                 </div>
                             </div>							
 							<div class="form-group">
@@ -202,12 +212,12 @@
                                 </div>
                             </div>						
 							
-							<div class="pull-right"> <a href="{{ url('login') }}"  >  << Back </a>   &nbsp;  &nbsp; </div>
+							<div class="pull-right"> <a href="{{ url('/') }}"  >  << Back </a>   &nbsp;  &nbsp; </div>
 
                         </form>
 						
 						@if(@$tower->towerid)
-						<form id="towerdelete" action="{{ url('/tower/'.$tower->id) }}" method="POST"  style="display:none" >
+						<form id="towerdelete" action="{{ route('tower.delete', $tower->id) }}" method="POST"  style="display:none" >
                                     {{ csrf_field() }}
 									{{ method_field('Delete') }}								
                         </form>

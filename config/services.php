@@ -13,10 +13,10 @@ return [
     | to have a conventional place to find your various credentials.
     |
     */
-    'linkedin' => [
-        'client_id' => '784wvtzqs0kac9',
-        'client_secret' => 'T0vi7LsYW0TjuIpx',
-        'redirect' => 'http://tep.megaprogramming.de/linkedin-oauth2callback/',
+    'github' => [
+        'client_id' => '6ce40e7ae54f913fe6f5',
+        'client_secret' => 'ecd28cf9c5c4873531d3be411edfb073da4766ca',
+        'redirect' => 'http://127.0.0.1:8000/socialite-oauth2callback/github',
     ],
 
     'mailgun' => [

@@ -15,7 +15,7 @@
                             </div>
                         @endif
                         <h2> User Profile</h2>
-                        <form class="form-horizontal" method="POST" action="{{ url('user-update') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('user.store') }}">
                             {{ csrf_field() }}
                             {{ method_field('PUT') }}
 
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
 							
-							<div class="pull-right"> <a href="{{ url('home') }}"  >  << Back </a>   &nbsp;  &nbsp; </div>
+							<div class="pull-right"> <a href="{{ url('/') }}"  >  << Back </a>   &nbsp;  &nbsp; </div>
 
                         </form>
                     </div>

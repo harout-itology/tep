@@ -74,15 +74,15 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="home"><a href="{{url('/home')}}"  >Dashboard</a></li>
+                        <li class="home"><a href="{{url('/')}}"  >Dashboard</a></li>
                         <li class="dropdown ">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 {{Auth::user()->name}}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">                               
-                                <li class="profile"><a href="{{url('/user-update')}}">User Profile</a></li>
+                                <li class="profile"><a href="{{route('user.edit')}}">User Profile</a></li>
                                 <li class="divider"></li>
-								<li class="tower"><a href="{{url('/tower/create')}}">Add Tower</a></li>
+								<li class="tower"><a href="{{route('tower.create')}}">Add Tower</a></li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('logout') }}"
@@ -108,7 +108,7 @@
     <div class="container-fluid main-container ">
         <footer class="footer navbar-fixed-bottom">
             <div class="col-md-12 text-center">
-            Copyright &COPY; by 2017 <a target="_blank" href="//megaprogramming.com">MegaProgramming</a>, All Rights Reserved
+            Copyright &COPY; by 2017 <a target="_blank" href="#">TEP</a>, All Rights Reserved
             </div>
 			<br>
         </footer>
