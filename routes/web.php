@@ -12,19 +12,25 @@
 */
 
 Route::get('/', function () {
-    return  redirect('home');
+    return redirect(route('tower.index'));
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home.index');
 
-Route::get('/google-oauth2callback', 'Auth\LoginController@google');
+Route::get('/google-oauth2callback', 'Auth\LoginController@google')->name('google.callback');
 
-Route::get('/linkedin-url', 'Auth\LoginController@linkedin_URL');
-Route::get('/linkedin-oauth2callback', 'Auth\LoginController@linkedin');
+Route::get('/socialite-url/{slug?}', 'Auth\LoginController@socialiteurl')->name('socialite.url');
+Route::get('/socialite-oauth2callback/{slug?}', 'Auth\LoginController@socialite')->name('socialite.callback');
 
-Route::get('/user-update', 'UserController@update');
-Route::put('/user-update', 'UserController@store');
+Route::get('/user-edit', 'UserController@edit')->name('user.edit');
+Route::put('/user-update', 'UserController@store')->name('user.store');
 
-Route::resource('/tower','TowerController');
+Route::get('/towers','TowerController@index')->name('tower.index');
+Route::get('/towers/create','TowerController@create')->name('tower.create');
+Route::post('/towers','TowerController@store')->name('tower.store');
+Route::get('/towers/{id}/edit','TowerController@edit')->name('tower.edit');
+Route::put('/towers/{id}','TowerController@update')->name('tower.update');
+Route::delete('/towers/{id}','TowerController@destroy')->name('tower.delete');
+

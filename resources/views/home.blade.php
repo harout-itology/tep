@@ -23,13 +23,13 @@
                             </div>
                         @endif
 						<form class="search navbar navbar-default mobile" method='get' action='' onsubmit="return my_submit()">
-							<input class="" type='text' placeholder='Latitude' name='latitude' value="{{$r_latitude==41.949101 ? '' : $r_latitude }}" >
-							<input class="" type='text' placeholder='Longitude' name='longitude' value="{{$r_longitude==-101.148345 ? '' : $r_longitude }}" >
-							<input class="" type='text' placeholder='Radius Mi' name='radius' value="{{$r_radius==10000 ? '' : $r_radius}}" >
-							<select class="" name='towerowner[]'  >
-								<option value='all'>All Owners</option>
+							<input class="" type='text' placeholder='Latitude' name='latitude' value="{{ $r_latitude }}" >
+							<input class="" type='text' placeholder='Longitude' name='longitude' value="{{ $r_longitude }}" >
+							<input class="" type='text' placeholder='Radius Mi' name='radius' value="{{ $r_radius }}" >
+							<select class="" name='towerowner'  >
+								<option value=''>All Owners</option>
 								@foreach($towerowner as $item)
-									<option {{$r_towerowner[0]==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
+									<option {{$r_towerowner==$item ? 'selected' : '' }} value='{{$item}}'>{{$item}}</option>
 								@endforeach
 							</select>
 							<button class="submit" type='submit'>Search</button>
@@ -59,7 +59,7 @@
                                     @foreach($towers as $item)
                                     <tr>
 										<td><i title=' Show Map ' data-id="{{$item->towerid}}" data-co1="{{$item->latitude}}" data-co2="{{$item->longitude}}"  class="btn fa fa-map-marker open-model" aria-hidden="true"  ></i> </td>
-										<td><a title=' Click to Edit ' href="{{url('tower/'.$item->id.'/edit')}}" >{{$item->towerid}}</a></td>
+										<td><a title=' Click to Edit ' href="{{route('tower.edit', $item->id)}}" >{{$item->towerid}}</a></td>
                                         <td>{{$item->sitename}}</td>
                                         <td>{{$item->city}}</td>
                                         <td>{{$item->country}}</td>
@@ -166,15 +166,15 @@
 						  <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Structure Class Ification</a>
 						</h4>
 					  </div>
-					  <div id="collapse4" class="panel-collapse collapse {{ $type=='infication' ? 'in' : '' }}">
+					  <div id="collapse4" class="panel-collapse collapse {{ $type=='structureclassification' ? 'in' : '' }}">
 						<div class="panel-body">
 								<ul class="list-group list-unstyled">
 									<li >
-										@foreach($infication as $item)
+										@foreach($structureclassification as $item)
 											@if($item)
 												<div class="checkbox checkbox-primary">
-													<input class='filter' id="infication_{{$item}}" name="infication[]" type="checkbox" {{ isset($r_infication) ? in_array($item,$r_infication) ? 'checked' : '' : 'checked' }} value="{{$item}}" >
-													<label for="infication_{{$item}}">{{$item}}</label>
+													<input class='filter' id="structureclassification_{{$item}}" name="structureclassification[]" type="checkbox" {{ isset($r_structureclassification) ? in_array($item,$r_structureclassification) ? 'checked' : '' : 'checked' }} value="{{$item}}" >
+													<label for="structureclassification_{{$item}}">{{$item}}</label>
 												</div>
 											@endif
 										@endforeach
@@ -292,7 +292,7 @@
 		// tabs on change google map activation
         $('.nav-tabs').on('shown.bs.tab', function () {
             google.maps.event.trigger(map, 'resize');
-            map.setCenter(new google.maps.LatLng(37.0903563,-95.7829316));
+            map.setCenter(new google.maps.LatLng(40.174682,44.503497));
 			table.fnDraw();
         });
 		// home menu activation

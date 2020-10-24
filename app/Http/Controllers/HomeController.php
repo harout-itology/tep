@@ -25,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-		return redirect('tower');
+		return redirect(route('tower.index'));
     }
 }
